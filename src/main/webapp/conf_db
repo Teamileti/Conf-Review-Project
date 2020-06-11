@@ -1,0 +1,257 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.2
+-- Dumped by pg_dump version 12.2
+
+-- Started on 2020-06-11 12:57:45
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 204 (class 1259 OID 16637)
+-- Name: artikulli; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.artikulli (
+    artikull_id integer NOT NULL,
+    titulli character varying(50) NOT NULL,
+    abstrakti character varying(500) NOT NULL,
+    doc_name character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public.artikulli OWNER TO postgres;
+
+--
+-- TOC entry 203 (class 1259 OID 16635)
+-- Name: artikulli_artikull_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.artikulli_artikull_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.artikulli_artikull_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2858 (class 0 OID 0)
+-- Dependencies: 203
+-- Name: artikulli_artikull_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.artikulli_artikull_id_seq OWNED BY public.artikulli.artikull_id;
+
+
+--
+-- TOC entry 206 (class 1259 OID 16654)
+-- Name: artikulli_autoret; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.artikulli_autoret (
+    aid integer NOT NULL,
+    eid character varying(50) NOT NULL,
+    kontakt character varying(50) NOT NULL
+);
+
+
+ALTER TABLE public.artikulli_autoret OWNER TO postgres;
+
+--
+-- TOC entry 202 (class 1259 OID 16630)
+-- Name: autoret; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.autoret (
+    email_id character varying(50) NOT NULL,
+    emri character varying(50) NOT NULL,
+    mbiemri character varying(50)
+);
+
+
+ALTER TABLE public.autoret OWNER TO postgres;
+
+--
+-- TOC entry 207 (class 1259 OID 16669)
+-- Name: shqyrtues_artikulli; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.shqyrtues_artikulli (
+    sh_email character varying(50) NOT NULL,
+    art_id integer NOT NULL,
+    merita_teknike integer NOT NULL,
+    kuptueshmeria integer NOT NULL,
+    origjinaliteti integer NOT NULL,
+    perkatesi_konference integer NOT NULL,
+    rekomandime character varying(500) NOT NULL
+);
+
+
+ALTER TABLE public.shqyrtues_artikulli OWNER TO postgres;
+
+--
+-- TOC entry 205 (class 1259 OID 16646)
+-- Name: shqyrtuesi; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.shqyrtuesi (
+    email character varying(50) NOT NULL,
+    emri character varying(50) NOT NULL,
+    mbiemri character varying(500) NOT NULL,
+    tel character varying(15) NOT NULL,
+    institucioni character varying(100) NOT NULL,
+    temat_interes character varying(500) NOT NULL
+);
+
+
+ALTER TABLE public.shqyrtuesi OWNER TO postgres;
+
+--
+-- TOC entry 208 (class 1259 OID 16699)
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    name character varying(20),
+    lastname character varying(20),
+    username character varying(20),
+    email character varying(30),
+    role character varying(20),
+    mobile character varying(30),
+    fullname character varying(20),
+    password character varying(20)
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- TOC entry 209 (class 1259 OID 16702)
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public.users ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 2712 (class 2604 OID 16640)
+-- Name: artikulli artikull_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.artikulli ALTER COLUMN artikull_id SET DEFAULT nextval('public.artikulli_artikull_id_seq'::regclass);
+
+
+--
+-- TOC entry 2720 (class 2606 OID 16658)
+-- Name: artikulli_autoret artikulli_autoret_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.artikulli_autoret
+    ADD CONSTRAINT artikulli_autoret_pkey PRIMARY KEY (aid, eid);
+
+
+--
+-- TOC entry 2716 (class 2606 OID 16645)
+-- Name: artikulli artikulli_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.artikulli
+    ADD CONSTRAINT artikulli_pkey PRIMARY KEY (artikull_id);
+
+
+--
+-- TOC entry 2714 (class 2606 OID 16634)
+-- Name: autoret autoret_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.autoret
+    ADD CONSTRAINT autoret_pkey PRIMARY KEY (email_id);
+
+
+--
+-- TOC entry 2722 (class 2606 OID 16676)
+-- Name: shqyrtues_artikulli shqyrtues_artikulli_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.shqyrtues_artikulli
+    ADD CONSTRAINT shqyrtues_artikulli_pkey PRIMARY KEY (sh_email, art_id);
+
+
+--
+-- TOC entry 2718 (class 2606 OID 16653)
+-- Name: shqyrtuesi shqyrtuesi_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.shqyrtuesi
+    ADD CONSTRAINT shqyrtuesi_pkey PRIMARY KEY (email);
+
+
+--
+-- TOC entry 2723 (class 2606 OID 16659)
+-- Name: artikulli_autoret artikulli_autoret_aid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.artikulli_autoret
+    ADD CONSTRAINT artikulli_autoret_aid_fkey FOREIGN KEY (aid) REFERENCES public.artikulli(artikull_id);
+
+
+--
+-- TOC entry 2724 (class 2606 OID 16664)
+-- Name: artikulli_autoret artikulli_autoret_eid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.artikulli_autoret
+    ADD CONSTRAINT artikulli_autoret_eid_fkey FOREIGN KEY (eid) REFERENCES public.autoret(email_id);
+
+
+--
+-- TOC entry 2726 (class 2606 OID 16682)
+-- Name: shqyrtues_artikulli shqyrtues_artikulli_art_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.shqyrtues_artikulli
+    ADD CONSTRAINT shqyrtues_artikulli_art_id_fkey FOREIGN KEY (art_id) REFERENCES public.artikulli(artikull_id);
+
+
+--
+-- TOC entry 2725 (class 2606 OID 16677)
+-- Name: shqyrtues_artikulli shqyrtues_artikulli_sh_email_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.shqyrtues_artikulli
+    ADD CONSTRAINT shqyrtues_artikulli_sh_email_fkey FOREIGN KEY (sh_email) REFERENCES public.shqyrtuesi(email);
+
+
+-- Completed on 2020-06-11 12:57:45
+
+--
+-- PostgreSQL database dump complete
+--
+
