@@ -70,9 +70,25 @@
     <artifactId>font-awesome</artifactId>
     <version>4.7.0</version>
 </dependency>
+<dependency>
+    <groupId>net.bootsfaces</groupId>
+    <artifactId>bootsfaces</artifactId>
+    <version>1.4.2</version>
+    <scope>compile</scope>
+</dependency>
+<dependency>
+    <groupId>org.primefaces</groupId>
+    <artifactId>primefaces</artifactId>
+    <version>6.2</version>
+</dependency>  
     </dependencies>
-
     <repositories>
+        <repository>
+            <id>prime-repo</id>
+            <name>PrimeFaces Maven Repository</name>
+            <url>http://repository.primefaces.org</url>
+            <layout>default</layout>
+        </repository>
         <repository>
             <id>java.net-maven2-SNAPSHOT-repository</id>
             <name>Java.net SNAPSHOT-Repository for Maven</name>
@@ -85,5 +101,17 @@
             <url>https://maven.java.net/content/repositories/releases/</url>
             <layout>default</layout>
         </repository>
-    </repositories>
+    <repository>
+      <id>central</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <releases><enabled>false</enabled></releases>
+      <snapshots><enabled>true</enabled></snapshots>
+    </repository>
+    <repository>
+        <id>prime-repo</id>
+        <name>PrimeFaces Maven Repository</name>
+        <url>http://repository.primefaces.org</url>
+        <layout>default</layout>
+    </repository>
+</repositories>
 </project>

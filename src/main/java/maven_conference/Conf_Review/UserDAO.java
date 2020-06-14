@@ -118,7 +118,7 @@ public class UserDAO {
             return null;
         }
     }
-    /*
+    
     public static boolean update(User u) {
         try (Connection con = Database.getConnection()) {
             PreparedStatement ps = con.prepareStatement("update users set name=?, lastname=?, fullname=?, email=?, mobile=? where username=?");
@@ -136,15 +136,15 @@ public class UserDAO {
             return false;
         }
     }
-    /*
+    
     
  // Used to fetch all records
-    public static ArrayList usersList(){
+    public static ArrayList<User> usersList(){
         try{
             Connection conn = Database.getConnection();
             Statement stmt= conn.createStatement();  
             ResultSet rs=stmt.executeQuery("select * from users");  
-            ArrayList usersList = new ArrayList();
+            ArrayList<User> usersList = new ArrayList<User>();
             while(rs.next()){
                 User user = new User();
                 user.setId(rs.getInt("id"));
@@ -247,5 +247,5 @@ public class UserDAO {
         }
         
     }
-    */
+    
 }

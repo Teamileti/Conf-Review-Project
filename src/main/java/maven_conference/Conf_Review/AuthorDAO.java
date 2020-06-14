@@ -63,70 +63,71 @@ package maven_conference.Conf_Review;
 		            return null;
 		        }
 		 }
-		 /*
 	    // Used to delete actor record
-	    public static void delete(int id){
+	    public static void delete(String id){
 	        try{
 	        	Connection conn = Database.getConnection();  
-	            PreparedStatement stmt = conn.prepareStatement("delete from aktor where aktor_id = "+id);  
+	            PreparedStatement stmt = conn.prepareStatement("delete from autoret where email_id = "+id);  
 	            stmt.executeUpdate();  
-	            System.out.println("Actor deleted successfully");
+	            System.out.println("Author deleted successfully");
 	        }catch(Exception e){
-	        	System.out.println("ActorDAO->delete() : " + e.getMessage());
+	        	System.out.println("AuthorDAO->delete() : " + e.getMessage());
 	        }
 	    }
 		
 	    // Used to save actor record
-	    public static void save(Actor a){
+	    public static void save(Author a){
 	        int result = 0;
 	        try{
 	        	Connection conn = Database.getConnection();
-	            PreparedStatement stmt = conn.prepareStatement("insert into aktor(emri,datelindja) values(?,?)");
-	            stmt.setString(1, a.getEmri());
-	            stmt.setDate(2, Date.valueOf(a.getDatelindja()));
+	            PreparedStatement stmt = conn.prepareStatement("insert into autoret (email_id,emri,mbiemri) values(?,?,?)");
+	            stmt.setString(1, a.getEmail_id());
+	            stmt.setString(2, a.getEmri());
+	            stmt.setString(3, a.getMbiemri());
 	            result = stmt.executeUpdate();
-	            System.out.println("Actor saved successfully!");
+	            System.out.println("Author saved successfully!");
 	            conn.close();
 	        }catch(Exception e){
-	        	System.out.println("ActorDAO->save() : " + e.getMessage());
+	        	System.out.println("AuthorDAO->save() : " + e.getMessage());
 	        }
 	    }
 	    
 	    // Used to fetch record to update
-	    public static Actor edit(int id){
-	        Actor a= null;
+	    public static Author edit(String id){
+	        Author a= null;
 	        try{
 	        	Connection conn = Database.getConnection();
 	            Statement stmt=conn.createStatement();  
-	            ResultSet rs=stmt.executeQuery("select * from aktor where aktor_id = "+(id));
+	            ResultSet rs=stmt.executeQuery("select * from autoret where email_id = "+(id));
 	            rs.next();
-	            a = new Actor();
-	            a.setAktor_id(rs.getInt("aktor_id"));
+	            a = new Author();
+	            a.setEmail_id(rs.getString("email_id"));
 	            a.setEmri(rs.getString("emri"));
-	            a.setDatelindja(rs.getString("datelindja"));
-	            System.out.println("Actor data updated!");
+	            a.setMbiemri(rs.getString("mbiemri"));
+	            System.out.println("Author data updated!");
 	            conn.close();
 	            return a;
 	        }catch(Exception e){
-	        	System.out.println("ActorDAO->edit() : " + e.getMessage());
+	        	System.out.println("AuthorDAO->edit() : " + e.getMessage());
 	        	return null;
 	        }       
 	    }
 
-	    public static boolean editActor(Actor a, int id) {
+	    public static boolean editAuthor(Author a, String id) {
 	        try (Connection con = Database.getConnection()) {
-	            PreparedStatement ps = con.prepareStatement("update aktor set emri=?, datelindja=? where aktor_id=?");
+	            PreparedStatement ps = con.prepareStatement("update autoret set emri=?, mbiemri =? where email_id=?");
 	            ps.setString(1, a.getEmri());
-	            ps.setDate(2, Date.valueOf(a.getDatelindja()));
-	            ps.setInt(3, id);
-	            System.out.println("Actor updated!");
+	            ps.setString(3, a.getMbiemri());
+	            ps.setString(3, id);
+	            System.out.println("Author updated!");
 	            int count = ps.executeUpdate();
 	            return count == 1;
 	        } catch (Exception ex) {
-	            System.out.println("ActorDAO->editActor() : " + ex.getMessage());
+	            System.out.println("AuthorDAO->editAuthor() : " + ex.getMessage());
 	            return false;
 	        }
 	    }
+	    /*
 	    
 	    public static void saveAssignActor(int aktor_id, String citimi, int film_id){
 	        try{

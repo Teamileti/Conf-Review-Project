@@ -135,7 +135,7 @@ public class User {
             	return "profile";				//simple user panel
             }
             else {
-            	return "successAdmin";				//admin user panel
+            	return "/admin_panel/home?faces-redirect=true";				//admin user panel
             }
         }
         else {
@@ -192,12 +192,12 @@ public class User {
             message="Sorry! Could not send mail! Please try again!";
         }      
     }
-/*
+*/
     @Override
     public String toString() {
         return "User{" + "uname=" + username + ", password=" + password + ", fullname=" + fullname + ", email=" + email + ", mobile=" + mobile + ", message=" + message + ", newPassword=" + newPassword + '}';
     }
-    */
+    
     
     public String profile() {
     	User u = UserDAO.getProfile();
@@ -210,7 +210,7 @@ public class User {
 
 		return "profile";
     }
-    /*
+    
     
     public String update() {
     	boolean done = UserDAO.update(this);
@@ -272,6 +272,6 @@ public class User {
              return "user_edit";
         }
     }
-    */
+    
     
 }

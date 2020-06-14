@@ -20,10 +20,10 @@ package maven_conference.Conf_Review;
 	@ManagedBean
 	@RequestScoped 
 	public class Author {
-		
+
 		ArrayList authorList, authorArticleList;
 		
-		private String email_id, emri, mbiemri; 
+		private String email_id, emri, mbiemri, message; 
 		
 
 		public String getEmail_id() {
@@ -48,6 +48,13 @@ package maven_conference.Conf_Review;
 
 		public void setMbiemri(String mbiemri) {
 			this.mbiemri = mbiemri;
+		}
+		public String getMessage() {
+			return message;
+		}
+
+		public void setMessage(String message) {
+			this.message = message;
 		}
 
 		private Map<String,Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
@@ -76,43 +83,44 @@ package maven_conference.Conf_Review;
 
 			return "/user_panel/author_article?faces-redirect=true";
 		}
-		/*
+		
 
 		public String adminList() {
-	    	return "/admin_panel/actor_index?faces-redirect=true";
+	    	return "/admin_panel/author_index?faces-redirect=true";
 	    }
 	    
 	    // Used to delete actor record
-	    public void delete(int id){
-	        ActorDAO.delete(id);
+	    public void delete(String id){
+	        AuthorDAO.delete(id);
 	    }
 	    
 	    // Used to create new actor record
-	    public String saveActor() {
-	    	ActorDAO.save(this);
+	    public String saveAuthor() {
+	    	AuthorDAO.save(this);
 	    	message = "Success! New actor created!";
-	    	return "actor_create";
+	    	return "author_create";
 	    }
 	    
 	    // Used to edit actor record
-	    public String edit(int actor_id) {
-	    	Actor a = ActorDAO.edit(actor_id);
-	    	this.aktor_id = actor_id;
+	    public String edit(String email_id) {
+	    	Author a = AuthorDAO.edit(email_id);
+	    	this.email_id = email_id;
 	    	this.emri = a.getEmri();
-	    	this.datelindja = a.getDatelindja();
-	    	return "actor_edit";
+	    	this.mbiemri = a.getMbiemri();
+	    	return "author_edit";
 	    }
 	    
-	    public String editActor(int id) {
-	    	boolean done = ActorDAO.editActor(this, id);
+	    public String editAuthor(String id) {
+	    	boolean done = AuthorDAO.editAuthor(this, id);
 	        if ( done ) {
-	        	 message = "Success! Actor updated!";
-	             return "actor_index";
+	        	 message = "Success! Author updated!";
+	             return "author_index";
 	        }else {
-	             message = "Sorry! Could not update actor. Please try again!";
-	             return "actor_edit";
+	             message = "Sorry! Could not update author. Please try again!";
+	             return "author_edit";
 	        }
 	    }
+	    /*
 	    
 	    public String saveAssignActor(int movie_id) {
 	    	ActorDAO.saveAssignActor(this.aktor_id, this.citimi, movie_id);

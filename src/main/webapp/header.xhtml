@@ -4,11 +4,16 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough"   
    xmlns:ui = "http://java.sun.com/jsf/facelets">
+   <h:head>
+    <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome.min-jsf.css" />
+     <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </h:head>
    
    <body>
-      <ui:composition> 
        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            
             
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
@@ -30,10 +35,11 @@
                   <li class="nav-item"><a href="#" class="nav-link notifications"><i class="fa fa-bell-o"></i><span class="badge">1</span></a></li>
                   <li class="nav-item"><a href="#" class="nav-link messages"><i class="fa fa-envelope-o"></i><span class="badge">10</span></a></li>
                   <li class="nav-item dropdown">
-                    <a  data-toggle ="dropdown" class="nav-link dropdown-toggle user-action" aria-expanded="false">
-                    <h:graphicImage src="/resources/images/useri.png" class="avatar" alt="Avatar"/> My Profile <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a></li>
+                    <a  data-toggle ="dropdown" class="nav-link dropdown-toggle" aria-expanded="false">
+                    My Profile<b class="caret"></b></a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a href="profile.xhtml" class="dropdown-item"><i class="fa fa-user-o"></i>
+                       Profile</a></li>
                       <li><a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Calendar</a></li>
                       <li><a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a></li>
                       <li class="divider dropdown-divider"></li>
@@ -44,6 +50,5 @@
               
             </div>
           </nav>
-      </ui:composition>	
    </body>
 </html>

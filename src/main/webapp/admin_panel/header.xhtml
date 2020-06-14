@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet"></link>
+    </h:head>
+      <ui:composition> 
+      <div>
+ <b:navBar brand="Brand" brandHref="#" id="dropMenuExample" contentDisabled="#{navBarBean.navBarDisabled}">
+  <b:navbarLinks contentDisabled="#{navBarBean.navBarLinksDisabled}">
+    <b:navLink value="Home" href="#"></b:navLink>
+    <b:navLink value="Link" href="#"></b:navLink>
+    <b:navLink value="Link" href="#"></b:navLink>
+    <b:dropMenu value="Dropdown" contentDisabled="#{navBarBean.dropMenuDisabled}">
+      <b:navLink value="Action" href="#"></b:navLink>
+      <b:navLink value="Another action" href="#"></b:navLink>
+      <b:navLink value="Something else here" href="#"></b:navLink>
+      <b:navLink></b:navLink>
+      <b:navLink header="Nav header"></b:navLink>
+      <b:navLink value="Separated link" href="#"></b:navLink>
+      <b:navLink value="One more separated link" href="#"></b:navLink>
+    </b:dropMenu>
+  </b:navbarLinks>
+</b:navBar>
+</div>
+      </ui:composition> 	
+</html>
