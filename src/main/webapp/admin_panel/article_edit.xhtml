@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui = "http://java.sun.com/jsf/facelets">
+      
+    <h:head>
+        <title>FirstPage</title>
+    </h:head>
+    <h:body>
+      <ui:insert name = "koka" >
+            <ui:include src = "koka.xhtml" />
+         </ui:insert>
+                  <div class = "container" style = "margin-top: 15px; ">
+            <div class = "row align-items-start">
+        <div class = "col-5">
+        	 <h3>Edit the Information for this Article here</h3>
+    <h:form>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Title</label>
+            <h:inputText type="text" class="form-control"  id="title" value="#{article.titulli}" 
+                              p:required="required" p:placeholder="Title" />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputAbstract">Abstract</label>
+            <h:inputText type="text" class="form-control" id="abstract" value="#{article.abstrakti}" 
+                              p:required="required" p:placeholder="Abstract"/>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputDocName">Doc Name</label>
+            <h:inputText type="text" class="form-control"  id="doc_name" value="#{article.doc_name}" 
+                              p:required="required" p:placeholder="Doc_Name"/>
+          </div>
+
+		      <br></br> 
+        <h:commandButton type="submit" class="btn btn-primary" value="Edit" action= "#{article.editArticle(article.artikull_id)}"/>
+        <br/>
+                <h:outputText value="#{article.message}" />
+      </h:form>
+               </div>
+        </div>
+        </div>
+        </h:body>
+        </html>
+        

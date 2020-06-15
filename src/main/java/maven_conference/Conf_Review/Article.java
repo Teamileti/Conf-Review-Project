@@ -22,7 +22,15 @@ package maven_conference.Conf_Review;
 	@RequestScoped 
 	public class Article {
 		ArrayList articleList, articleAuthorList, articleShqyrtuesList;
-		private String titulli, abstrakti, doc_name;
+		private String titulli, abstrakti, doc_name, message;
+		public String getMessage() {
+			return message;
+		}
+
+		public void setMessage(String message) {
+			this.message = message;
+		}
+
 		private int artikull_id;
 		private Map<String,Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
 
@@ -98,41 +106,41 @@ package maven_conference.Conf_Review;
 	    public String adminList() {
 	    	return "/admin_panel/movie_index?faces-redirect=true";
 	    }
+	    */
 	    
 	 // Used to delete user record
 	    public void delete(int id){
-	        MovieDAO.delete(id);
+	        ArticleDAO.delete(id);
 	    }
 	    
 	    // Used to create new movie record
-	    public String saveMovie() {
-	    	MovieDAO.save(this);
+	    public String saveArticle() {
+	    	ArticleDAO.save(this);
 	    	message = "Success! New movie created!";
-	    	return "movie_create";
+	    	return "article_create";
 	    }
 	    
 	    // Used to edit movie record
-	    public String edit(int movie_id) {
-	    	Movie movie = MovieDAO.edit(movie_id);
-	    	this.film_id = movie_id;
-	    	this.titulli = movie.getTitulli();
-	    	this.viti = movie.getViti();
-	    	this.gjatesia = movie.getGjatesia();
-	    	this.skenari = movie.getSkenari();
-	    	this.kompania = movie.getKompania();
-	    	return "movie_edit";
+	    public String edit(int artikull_id) {
+	    	Article ar = ArticleDAO.edit(artikull_id);
+	    	this.artikull_id = artikull_id;
+	    	this.titulli = ar.getTitulli();
+	    	this.abstrakti = ar.getAbstrakti();
+	    	this.doc_name = ar.getDoc_name();
+	    	return "article_edit";
 	    }
 	    
-	    public String editMovie(int id) {
-	    	boolean done = MovieDAO.editMovie(this, id);
+	    public String editArticle(int id) {
+	    	boolean done = ArticleDAO.editArticle(this, id);
 	        if ( done ) {
-	        	 message = "Success! Movie updated!";
-	             return "movie_index";
+	        	 message = "Success! Article updated!";
+	             return "article_index";
 	        }else {
-	             message = "Sorry! Could not update movie. Please try again!";
-	             return "movie_edit";
+	             message = "Sorry! Could not update article. Please try again!";
+	             return "article_edit";
 	        }
 	    }
+	    /*
 	    
 	    public String assignActor(int movie_id) {
 			String title = MovieDAO.movieTitle(movie_id);

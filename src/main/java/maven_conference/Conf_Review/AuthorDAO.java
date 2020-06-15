@@ -9,11 +9,11 @@ package maven_conference.Conf_Review;
 
 	public class AuthorDAO {
 		 
-		 public static ArrayList authorList() {
+		 public static ArrayList<Author> authorList() {
 		        try (Connection con = Database.getConnection()) {
 		            Statement stmt=con.createStatement();  
 		            ResultSet rs=stmt.executeQuery("select * from autoret"); 
-		            ArrayList autor = new ArrayList();
+		            ArrayList<Author> autor = new ArrayList<Author>();
 		            while(rs.next()) {
 		                Author au = new Author();
 		                au.setEmail_id(rs.getString("email_id"));
@@ -24,7 +24,7 @@ package maven_conference.Conf_Review;
 		            System.out.println("Authors added to list!");
 		            return autor;
 		        } catch (Exception ex) {
-		            System.out.println("AuthorDAO-> actorsList() : " + ex.getMessage());
+		            System.out.println("AuthorDAO-> authorList() : " + ex.getMessage());
 		            return null;
 		        }
 		    }

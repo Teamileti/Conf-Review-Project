@@ -47,20 +47,21 @@ package maven_conference.Conf_Review;
 		            return null;
 		        }
 		 }
+		 */
 		 
-		 public static String movieTitle(int film_id) {
+		 public static String articleTitle(int artikull_id) {
 			 try (Connection con = Database.getConnection()) {
-		            PreparedStatement stmt=con.prepareStatement("select * from film where film_id=?");  
-		            stmt.setInt(1, film_id);
+		            PreparedStatement stmt=con.prepareStatement("select * from artikulli where artikull_id=?");  
+		            stmt.setInt(1, artikull_id);
 		            ResultSet rs=stmt.executeQuery();
 		            rs.next();
 		            return rs.getString("titulli");
 		        } catch (Exception ex) {
-		            System.out.println("MovieDAO-> movieActorsList() : " + ex.getMessage());
+		            System.out.println("ArticleDAO-> articleAuthorList() : " + ex.getMessage());
 		            return null;
 		        }
 		 }
-		 
+		 /*
 		 public static ArrayList movieDirectorsList(int film_id) {
 			 try (Connection con = Database.getConnection()) {
 		            PreparedStatement stmt=con.prepareStatement("select * from film_regjizor,regjizor where film_regjizor.rid= regjizor.regjizor_id and film_regjizor.fid=?");  
@@ -81,46 +82,43 @@ package maven_conference.Conf_Review;
 		            return null;
 		        }
 		 }
+		 */
 		 
 		 // Used to save movie record
-	    public static void save(Movie m){
+	    public static void save(Article ar){
 	        int result = 0;
 	        try{
 	        	Connection conn = Database.getConnection();
-	            PreparedStatement stmt = conn.prepareStatement("insert into film(titulli,viti,gjatesia, skenari, kompania) values(?,?,?,?,?)");
-	            stmt.setString(1, m.getTitulli());
-	            stmt.setInt(2, m.getViti());
-	            stmt.setInt(3, m.getGjatesia());
-	            stmt.setString(4, m.getSkenari());
-	            stmt.setString(5, m.getKompania());
+	            PreparedStatement stmt = conn.prepareStatement("insert into artikulli(titulli,abstrakti,doc_name) values(?,?,?)");
+	            stmt.setString(1, ar.getTitulli());
+	            stmt.setString(2, ar.getAbstrakti());
+	            stmt.setString(3, ar.getDoc_name());
 	            result = stmt.executeUpdate();
-	            System.out.println("Movie saved successfully!");
+	            System.out.println("Article saved successfully!");
 	            conn.close();
 	        }catch(Exception e){
-	        	System.out.println("MovieDAO->save() : " + e.getMessage());
+	        	System.out.println("ArticleDAO->save() : " + e.getMessage());
 	        }
 	    }
 	    
 	    // Used to fetch record to update
-	    public static Movie edit(int id){
-	        Movie m = null;
+	    public static Article edit(int id){
+	        Article ar = null;
 	        try{
 	        	Connection conn = Database.getConnection();
 	            Statement stmt=conn.createStatement();  
-	            ResultSet rs=stmt.executeQuery("select * from film where film_id = "+(id));
+	            ResultSet rs=stmt.executeQuery("select * from artikulli where artikull_id = "+(id));
 	            rs.next();
-	            m = new Movie();
-	            m.setFilm_id(rs.getInt("film_id"));
-	            m.setTitulli(rs.getString("titulli"));
-	            m.setViti(rs.getInt("viti"));
-	            m.setGjatesia(rs.getInt("gjatesia"));
-	            m.setSkenari(rs.getString("skenari"));
-	            m.setKompania(rs.getString("kompania"));
-	            System.out.println("Movie data updated!");
+	            ar = new Article();
+	            ar.setArtikull_id(rs.getInt("artikull_id"));
+	            ar.setTitulli(rs.getString("titulli"));
+	            ar.setAbstrakti(rs.getString("abstrakti"));
+	            ar.setDoc_name(rs.getString("doc_name"));
+	            System.out.println("Article data updated!");
 	            conn.close();
-	            return m;
+	            return ar;
 	        }catch(Exception e){
-	        	System.out.println("MovieDAO->edit() : " + e.getMessage());
+	        	System.out.println("ArticleDAO->edit() : " + e.getMessage());
 	        	return null;
 	        }       
 	    }
@@ -129,32 +127,28 @@ package maven_conference.Conf_Review;
 	    public static void delete(int id){
 	        try{
 	        	Connection conn = Database.getConnection();  
-	            PreparedStatement stmt = conn.prepareStatement("delete from film where film_id = "+id);  
+	            PreparedStatement stmt = conn.prepareStatement("delete from artikulli where artikull_id = "+id);  
 	            stmt.executeUpdate();  
-	            System.out.println("Movie deleted successfully");
+	            System.out.println("Article deleted successfully");
 	        }catch(Exception e){
-	        	System.out.println("MovieDAO->delete() : " + e.getMessage());
+	        	System.out.println("ArticleDAO->delete() : " + e.getMessage());
 	        }
 	    }
 
-	    public static boolean editMovie(Movie m, int id) {
+	    public static boolean editArticle(Article ar, int id) {
 	        try (Connection con = Database.getConnection()) {
-	            PreparedStatement ps = con.prepareStatement("update film set titulli=?, viti=?, gjatesia=?, skenari=?, kompania=? where film_id=?");
-	            ps.setString(1, m.getTitulli());
-	            ps.setInt(2, m.getViti());
-	            ps.setInt(3, m.getGjatesia());
-	            ps.setString(4, m.getSkenari());
-	            ps.setString(5, m.getKompania());
-	            ps.setInt(6, id);
-	            System.out.println("Movie updated!");
+	            PreparedStatement ps = con.prepareStatement("update artikulli set titulli=?, abstrakti=?, doc_name=? where artikull_id=?");
+	            ps.setString(1, ar.getTitulli());
+	            ps.setString(2, ar.getAbstrakti());
+	            ps.setString(3, ar.getDoc_name());
+	            ps.setInt(4, id);
+	            System.out.println("Article updated!");
 	            int count = ps.executeUpdate();
 	            return count == 1;
 	        } catch (Exception ex) {
-	            System.out.println("MovieDAO->editMovie() : " + ex.getMessage());
+	            System.out.println("ArticleDAO->editArticle() : " + ex.getMessage());
 	            return false;
 	        }
 	    }
 	}
-	*/
 
-}
