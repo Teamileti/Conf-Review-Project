@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:cc="http://java.sun.com/jsf/composite">
+         
+          <h:head>
+            <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
+             <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome.min-jsf.css" />
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet"></link>
+    </h:head>
+    <h:body>
+     <ui:insert name = "koka" >
+            <ui:include src = "koka.xhtml" />
+         </ui:insert>
+         <div class = "container">
+               <h:form>
+            <center>
+                <h2><h:outputText value="User Records"/></h2>
+            </center>
+            <p:dataTable binding="#{table}" value="#{user.usersList()}" var="u"  >
+             
+       <p:column filterBy="#{u.id}" headerText="Id" footerText="contains" filterMatchMode="contains">
+            <h:outputText value="#{u.id}" />
+        </p:column>
+  <p:column filterBy="#{u.name}" headerText="Name" footerText="contains" filterMatchMode="contains">
+            <h:outputText value="#{u.name}" />
+        </p:column>
+      <p:column filterBy="#{u.lastname}" headerText="Lastaname" footerText="contains" filterMatchMode="contains">
+            <h:outputText value="#{u.lastname}" />
+        </p:column>
+               
+            </p:dataTable>
+            <center><h:commandButton action = "user_create?faces-redirect=true" value="Create New User" class="btn btn-success"></h:commandButton> </center>
+        </h:form>
+        </div>
+        </h:body>
+        </html>
+        

@@ -132,7 +132,7 @@ public class User {
             Util.addToSession("username", username);
             Util.addToSession("fullname", u.getFullname());
             if(u.getRole().equals("user")) {
-            	return "profile";				//simple user panel
+            	return "/user_panel/article";				//simple user panel
             }
             else {
             	return "/admin_panel/home?faces-redirect=true";				//admin user panel
@@ -154,12 +154,13 @@ public class User {
              message = "Sorry! Could not change password. Old passwod may be incorrect!";
         }
     }
+    */
      
     public String logout() {
         Util.terminateSession();
-        return "/all/login?faces-redirect=true";
+        return "/public/login?faces-redirect=true";
     }
-   */
+   
    /* public void recoverPassword(ActionEvent evt){
         User  u = UserDAO.getUser(username, email);
         if( u == null) {

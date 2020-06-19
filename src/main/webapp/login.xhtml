@@ -24,7 +24,10 @@
           <label for="exampleInputPassword1">Password</label>
           <h:inputSecret type="password" class="form-control" 
           id="password" value = "#{user.password}"
-           placeholder="Password" required="true"/>
+           placeholder="Password" required="true"
+           validatorMessage = "Password should have at least 6 characters">
+           <f:validateLength minimum = "6"/>
+           </h:inputSecret>
         </div>
         
         <h:commandButton type="submit" class="btn btn-primary"  value="Login" action="#{user.login()}"/> 

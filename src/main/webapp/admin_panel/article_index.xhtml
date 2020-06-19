@@ -39,10 +39,11 @@
                     <f:facet name="header">Update</f:facet>
                     <h:commandButton action = "#{article.edit(ar.artikull_id)}" value="Update" class="btn btn-primary"> 
                     </h:commandButton>
-                </h:column>
+                </h:column> 
                 <h:column> 
                     <f:facet name="header">Delete</f:facet>
-                    <h:commandButton action = "#{article.delete(ar.artikull_id)}" value="Delete" class="btn btn-danger"> 
+                    <h:commandButton onclick="if (! confirm('Really want to do that?')) return false"
+                    action = "#{article.delete(ar.artikull_id)}" value="Delete" class="btn btn-danger"> 
                     </h:commandButton>
                 </h:column>
             </h:dataTable>

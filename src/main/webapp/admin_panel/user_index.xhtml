@@ -2,8 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:ui = "http://java.sun.com/jsf/facelets">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:cc="http://java.sun.com/jsf/composite">
          
           <h:head>
             <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
@@ -14,20 +15,22 @@
      <ui:insert name = "koka" >
             <ui:include src = "koka.xhtml" />
          </ui:insert>
+         <div class = "container">
                <h:form>
             <center>
                 <h2><h:outputText value="User Records"/></h2>
             </center>
             <h:dataTable binding="#{table}" value="#{user.usersList()}" var="u" class="table table-striped table-hover table-bordered" >
-                <h:column>
-                    <f:facet name="header">ID</f:facet>
+             
+            <h:column>
+                    <f:facet name="header">Id</f:facet>
                     <h:outputText value="#{u.id}"/>
                 </h:column>
-                <h:column>
+   <h:column>
                     <f:facet name="header">Name</f:facet>
                     <h:outputText value="#{u.name}"/>
                 </h:column>
-                <h:column>
+        <h:column>
                     <f:facet name="header">Lastname</f:facet>
                     <h:outputText value="#{u.lastname}"/>
                 </h:column>
@@ -68,6 +71,7 @@
             </h:dataTable>
             <center><h:commandButton action = "user_create?faces-redirect=true" value="Create New User" class="btn btn-success"></h:commandButton> </center>
         </h:form>
+        </div>
         </h:body>
         </html>
         
