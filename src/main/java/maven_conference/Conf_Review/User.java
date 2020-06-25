@@ -1,5 +1,8 @@
 package maven_conference.Conf_Review;
 
+
+import java.awt.List;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,13 +19,14 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
+import java.security.*;
 
 @ManagedBean
 @RequestScoped 
 public class User {
     
 	ArrayList usersList ;
+	private ArrayList<User> filteredUserList;
 	Connection connection;
 	private String username, name, lastname, password, fullname, email,mobile, message, newPassword, role;
 	private int id;
@@ -89,7 +93,29 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        String generatedPassword = null;
+        try {
+            // Create MessageDigest instance for MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            //Add password bytes to digest
+            md.update(password.getBytes());
+            //Get the hash's bytes 
+            byte[] bytes = md.digest();
+            //This bytes[] has bytes in decimal format;
+            //Convert it to hexadecimal format
+            StringBuilder sb = new StringBuilder();
+            for(int i=0; i< bytes.length ;i++)
+            {
+                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            }
+            //Get complete hashed password in hex format
+            generatedPassword = sb.toString();
+        } 
+        catch (NoSuchAlgorithmException e) 
+        {
+            e.printStackTrace();
+        }
+       this.password = generatedPassword;
     }
 
     public String getFullname() {
@@ -132,7 +158,7 @@ public class User {
             Util.addToSession("username", username);
             Util.addToSession("fullname", u.getFullname());
             if(u.getRole().equals("user")) {
-            	return "/user_panel/article";				//simple user panel
+            	return "/user_panel/home?faces-redirect=true";				//simple user panel
             }
             else {
             	return "/admin_panel/home?faces-redirect=true";				//admin user panel
@@ -145,7 +171,7 @@ public class User {
     }
 
      
-    /* public void changePassword(ActionEvent evt) {
+     public void changePassword(ActionEvent evt) {
         boolean done = UserDAO.changePassword(Util.getUsername(),password, newPassword);
         if (done) {
             message="Password has been changed successfully!";
@@ -154,7 +180,7 @@ public class User {
              message = "Sorry! Could not change password. Old passwod may be incorrect!";
         }
     }
-    */
+    
      
     public String logout() {
         Util.terminateSession();
@@ -273,6 +299,16 @@ public class User {
              return "user_edit";
         }
     }
+
+	public ArrayList<User> getFilteredUserList() {
+		return filteredUserList;
+	}
+
+	public void setFilteredUserList(ArrayList<User> filteredUserList) {
+		this.filteredUserList = filteredUserList;
+	}
+
+
     
     
 }

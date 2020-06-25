@@ -139,17 +139,18 @@ package maven_conference.Conf_Review;
 	        }
 	    }
 	    
-	    public static void saveAssignReviewer(String email, int merita_teknike, int kuptueshmeria, int origjinaliteti, int perkatesi_konference, String rekomandime, int art_id){
+	    public static void saveAssignReviewer(String email, int merita_teknike, int kuptueshmeria, int origjinaliteti, int perkatesi_konference, String rekomandime, String statusi, int art_id){
 	        try{
 	        	Connection conn = Database.getConnection();
-	            PreparedStatement stmt = conn.prepareStatement("insert into shqyrtues_artikulli(sh_email, art_id, merita_teknike, kuptueshmeria, origjinaliteti, perkatesi_konference, rekomandime) values(?,?,?,?,?,?,?)");
-	            stmt.setInt(1, art_id);
-	            stmt.setString(2, email);
+	            PreparedStatement stmt = conn.prepareStatement("insert into shqyrtues_artikulli(sh_email, art_id, merita_teknike, kuptueshmeria, origjinaliteti, perkatesi_konference, rekomandime, statusi) values(?,?,?,?,?,?,?,?)");
+	            stmt.setString(1, email);
+	            stmt.setInt(2, art_id);
 	            stmt.setInt(3,merita_teknike);
 	            stmt.setInt(4,kuptueshmeria);
 	            stmt.setInt(5,origjinaliteti);
 	            stmt.setInt(6,perkatesi_konference);
 	            stmt.setString(7, rekomandime);
+	            stmt.setString(8, statusi);
 	            int result = stmt.executeUpdate();
 	            System.out.println("Shqyrtues_Artikulli saved successfully!");
 	            conn.close();

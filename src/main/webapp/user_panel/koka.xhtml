@@ -18,31 +18,31 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item ">
-        <a class="nav-link" href="/Conf-Review/faces/admin_panel/home.xhtml" style= "color: white;">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/Conf-Review/faces/user_panel/home.xhtml" style= "color: white;">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/Conf-Review/faces/admin_panel/user_index.xhtml" style= "color: white;">Users</a>
+        <a class="nav-link" href="#" style= "color: white;">Users</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/Conf-Review/faces/admin_panel/author_index.xhtml" style= "color: white;">Authors</a>
+        <a class="nav-link" href="/Conf-Review/faces/user_panel/author.xhtml" style= "color: white;">Authors</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/Conf-Review/faces/admin_panel/article_index.xhtml" style= "color: white;">Articles</a>
+        <a class="nav-link" href="/Conf-Review/faces/user_panel/article.xhtml" style= "color: white;">Articles</a>
       </li>
        <li class="nav-item">
-        <a class="nav-link" href="/Conf-Review/faces/admin_panel/reviewer_index.xhtml" style= "color: white;">Reviewer</a>
+        <a class="nav-link" href="/Conf-Review/faces/user_panel/reviewer.xhtml" style= "color: white;">Reviewer</a>
       </li>
       </ul>
       <ul class = "nav navbar-nav navbar-right ml-auto">
-         <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style= "color: white; hover: none;">
+      <li class="nav-item dropdown" data-hover="dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style= "color: white;">
           Profile
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <h:form>
           <h:commandLink class="dropdown-item" action="#{user.profile()}"><i class="fa fa-user-o"></i>My Profile</h:commandLink>
+            <h:commandLink class="dropdown-item" action = "change_password.xhtml"><i class="fa fa-key"></i>Change my Password</h:commandLink>
             <div class="dropdown-divider"></div>
-             <h:commandLink class="dropdown-item" action = "change_password.xhtml"><i class="fa fa-key"></i>Change my Password</h:commandLink>
           <h:commandLink class="dropdown-item" action="#{user.logout()}"><i class="fa fa-sign-out"></i>Logout</h:commandLink>
           </h:form>
         </div>

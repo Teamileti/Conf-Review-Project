@@ -26,8 +26,8 @@ package maven_conference.Conf_Review;
 		            return null;
 		        }
 		    }
-		 
-		/* public static ArrayList articleAuthorList(int artikull_id) {
+		 /*
+		 public static ArrayList articleAuthorList(int artikull_id) {
 			 try (Connection con = Database.getConnection()) {
 		            PreparedStatement stmt=con.prepareStatement("select * from artikulli_autoret,autoret where artikulli_autoret.eid= autoret.email_id and artikulli_autoret.aid=?");  
 		            stmt.setInt(1, artikull_id);
@@ -48,6 +48,7 @@ package maven_conference.Conf_Review;
 		        }
 		 }
 		 */
+		 /*
 		 
 		 public static String articleTitle(int artikull_id) {
 			 try (Connection con = Database.getConnection()) {
@@ -60,29 +61,53 @@ package maven_conference.Conf_Review;
 		            System.out.println("ArticleDAO-> articleAuthorList() : " + ex.getMessage());
 		            return null;
 		        }
-		 }
-		 /*
-		 public static ArrayList movieDirectorsList(int film_id) {
+		 } */
+		 
+		 public static Article articleData(int artikull_id) {
+			 Article a = new Article();
 			 try (Connection con = Database.getConnection()) {
-		            PreparedStatement stmt=con.prepareStatement("select * from film_regjizor,regjizor where film_regjizor.rid= regjizor.regjizor_id and film_regjizor.fid=?");  
-		            stmt.setInt(1, film_id);
-		            ResultSet rs=stmt.executeQuery(); 
-		            ArrayList directors = new ArrayList();
-		            while(rs.next()) {
-		                Director d = new Director();
-		                d.setDirector_id(rs.getInt("regjizor_id"));
-		                d.setDatelindja(rs.getString("datelindja"));
-		                d.setEmri(rs.getString("emri"));
-		                directors.add(d);
+		            PreparedStatement stmt=con.prepareStatement("select * from artikulli where artikull_id=?");  
+		            stmt.setInt(1, artikull_id);
+		            ResultSet rs=stmt.executeQuery();
+		            while (rs.next()) {
+		            	
+		            	a.setArtikull_id(rs.getInt("artikull_id"));
+		                a.setTitulli(rs.getString("titulli"));
+		                a.setAbstrakti(rs.getString("abstrakti"));
+		                a.setDoc_name(rs.getString("doc_name"));   
 		            }
-		            System.out.println("Movie Directors added to list!");
-		            return directors;
+		            System.out.println("Article data captured!");
+		            return a;
 		        } catch (Exception ex) {
-		            System.out.println("MovieDAO-> movieDirectorsList() : " + ex.getMessage());
+		            System.out.println("ArticleDAO-> articleData() : " + ex.getMessage());
+		            return null;
+		        }
+		 } 
+		 
+		 public static ArrayList articleShyrtuesitList(int artikull_id) {
+			 try (Connection con = Database.getConnection()) {
+		            PreparedStatement stmt=con.prepareStatement("select * from shqyrtues_artikulli, shqyrtuesi where shqyrtuesi.email = shqyrtues_artikulli.sh_email and shqyrtues_artikulli.art_id=?");  
+		            stmt.setInt(1, artikull_id);
+		            ResultSet rs=stmt.executeQuery(); 
+		            ArrayList<Reviewer> shqyrtuesit = new ArrayList<Reviewer>();
+		            while(rs.next()) {
+		                Reviewer re = new Reviewer();
+		                re.setEmail(rs.getString("email"));
+		                re.setEmri(rs.getString("emri"));
+		                re.setMbiemri(rs.getString("mbiemri"));
+		                re.setTel(rs.getString("tel"));
+		                re.setInsitucioni(rs.getString("institucioni"));
+		                re.setTemat_interes(rs.getString("temat_interes"));
+		                shqyrtuesit.add(re);
+		            }
+		            System.out.println("Article Reviewers added to list!");
+		            return shqyrtuesit;
+		        } catch (Exception ex) {
+		            System.out.println("Article-> articleReviewerList() : " + ex.getMessage());
 		            return null;
 		        }
 		 }
-		 */
+		 
 		 
 		 // Used to save movie record
 	    public static void save(Article ar){

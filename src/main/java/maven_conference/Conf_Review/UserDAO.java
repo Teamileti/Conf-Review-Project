@@ -53,7 +53,7 @@ public class UserDAO {
         }
     }
 
-  /*  public static boolean changePassword(String username, String password, String newPassword) {
+   public static boolean changePassword(String username, String password, String newPassword) {
         try (Connection con = Database.getConnection()) {
             PreparedStatement ps = con.prepareStatement("update users set password = ? where username = ? and password = ?");
             ps.setString(1,newPassword);
@@ -94,7 +94,7 @@ public class UserDAO {
             return null;
         }
     }
-    */
+    
     public static User getProfile() {
     	try (Connection con = Database.getConnection()) {
             PreparedStatement ps = con.prepareStatement("select * from users where username = ?");
@@ -157,9 +157,11 @@ public class UserDAO {
                 user.setMobile(rs.getString("mobile"));
                 user.setRole(rs.getString("role"));
                 usersList.add(user);
+                conn.close();
             }
             return usersList;
         }catch(Exception e){
+
         	System.out.println("UserDAO->usersList() : " + e.getMessage());
         	return null;
         }

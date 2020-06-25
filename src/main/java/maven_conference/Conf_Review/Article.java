@@ -76,8 +76,8 @@ package maven_conference.Conf_Review;
 		public String list() {
 			return "/user_panel/article?faces-redirect=true";
 		}
-		
-		/* public ArrayList articleAuthorList(int id){
+		/*
+		 public ArrayList articleAuthorList(int id){
 			articleAuthorList = ArticleDAO.articleAuthorList(id);
 			return articleAuthorList;
 		}
@@ -89,13 +89,15 @@ package maven_conference.Conf_Review;
 
 			return "/user_panel/movie_actors?faces-redirect=true";
 		}
-	
-		public ArrayList articleShqyrtuesList(int id){
-			articleShqyrtuesList = ArticleDAO.articleShqyrtuesList(id);
+		
+	*/
+		public ArrayList articleReviewerList(int id){
+			articleShqyrtuesList = ArticleDAO.articleShyrtuesitList(id);
 			return articleShqyrtuesList;
 		}
+		/*
 		
-		/*public String directors(int film_id) {
+		 public String directors(int film_id) {
 			String title = MovieDAO.movieTitle(film_id);
 			sessionMap.put("film_id", film_id);
 			sessionMap.put("title", title);
@@ -142,22 +144,24 @@ package maven_conference.Conf_Review;
 	    }
 	    /*
 	    
-	    public String assignActor(int movie_id) {
-			String title = MovieDAO.movieTitle(movie_id);
-			sessionMap.put("film_id", movie_id);
-			sessionMap.put("title", title);
+	    public String assignAuthor(int artikull_id) {
+			Article returned = ArticleDAO.articleData(artikull_id);
+			sessionMap.put("artikull_id", artikull_id);
+			sessionMap.put("returned", returned);
 
-			return "/user_panel/movie_assign_actor?faces-redirect=true";
+			return "/user_panel/article_assign_author?faces-redirect=true";
 	    }
+*/
+	    public String assignReviewer(int artikull_id) {
+			Article captured = ArticleDAO.articleData(artikull_id);
+			sessionMap.put("artikull_id", artikull_id);
+			sessionMap.put("captured", captured);
 
-	    public String assignDirector(int movie_id) {
-			String title = MovieDAO.movieTitle(movie_id);
-			sessionMap.put("film_id", movie_id);
-			sessionMap.put("title", title);
-
-			return "/user_panel/movie_assign_director?faces-redirect=true";
+			return "/user_panel/reviewer_article_feedback?faces-redirect=true";
 	    }
 	    
 	}
-	*/
+	/*
+	
 }
+*/

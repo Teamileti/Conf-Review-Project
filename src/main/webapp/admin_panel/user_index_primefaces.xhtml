@@ -10,32 +10,72 @@
             <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
              <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome.min-jsf.css" />
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet"></link>
+ 
     </h:head>
     <h:body>
      <ui:insert name = "koka" >
             <ui:include src = "koka.xhtml" />
          </ui:insert>
-         <div class = "container">
                <h:form>
             <center>
                 <h2><h:outputText value="User Records"/></h2>
             </center>
-            <p:dataTable binding="#{table}" value="#{user.usersList()}" var="u"  >
-             
-       <p:column filterBy="#{u.id}" headerText="Id" footerText="contains" filterMatchMode="contains">
+            <p:dataTable var = "u" value="#{user.usersList()}" 
+            filteredValue = "#{user.filteredUserList}" widgetVar="userWidget"
+            emptyMessage="No screenshot data found with given criteria" lazy="true">
+               <f:facet name="header">
+        <p:outputPanel>
+            <h:outputText value="Search all:"/>
+            <p:inputText id="globalFilter"
+                         onkeyup="PF('userWidget').filter()"
+                         style="width:150px" placeholder="Search text"/>
+        </p:outputPanel>
+    </f:facet>
+       <p:column headerText="Id">
             <h:outputText value="#{u.id}" />
         </p:column>
-  <p:column filterBy="#{u.name}" headerText="Name" footerText="contains" filterMatchMode="contains">
+  <p:column headerText="Name">
             <h:outputText value="#{u.name}" />
         </p:column>
-      <p:column filterBy="#{u.lastname}" headerText="Lastaname" footerText="contains" filterMatchMode="contains">
+      <p:column  headerText="Lastaname" >
             <h:outputText value="#{u.lastname}" />
         </p:column>
-               
+         <p:column  headerText="Fullname" >
+            <h:outputText value="#{u.fullname}" />
+        </p:column>
+         <p:column headerText="Username">
+            <h:outputText value="#{u.username}" />
+        </p:column>
+         <p:column  headerText="Email">
+            <h:outputText value="#{u.email}" />
+        </p:column>
+         <p:column headerText="Password">
+            <h:outputText value="#{u.password}" />
+        </p:column>
+         <p:column headerText="Role">
+              <f:facet name="filter">
+            <p:selectOneMenu >
+                <f:selectItem itemLabel="Select" itemValue="User" />
+                 <f:selectItem itemValue="Admin"/>
+            </p:selectOneMenu>
+        </f:facet>
+            <h:outputText value="#{u.role}" />
+        </p:column>
+         <p:column  headerText="Mobile">
+            <h:outputText value="#{u.mobile}" />
+        </p:column>
+          <p:column headerText = "Update"> 
+                    <p:commandButton action = "#{user.edit(u.id)}" value="Update" > 
+                    </p:commandButton>
+                </p:column>
+                <p:column headerText = "Delete"> 
+                    <p:commandButton action = "#{user.delete(u.id)}" value="Delete"> 
+                    </p:commandButton>
+                </p:column>
             </p:dataTable>
+            <br></br>
             <center><h:commandButton action = "user_create?faces-redirect=true" value="Create New User" class="btn btn-success"></h:commandButton> </center>
         </h:form>
-        </div>
         </h:body>
         </html>
         

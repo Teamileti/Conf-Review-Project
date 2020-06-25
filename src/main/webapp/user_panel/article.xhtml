@@ -2,18 +2,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" 
       xmlns:ui = "http://java.sun.com/jsf/facelets">
       
     <h:head>
         <title>FirstPage</title>
           <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome.min-jsf.css" />
              <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
-    </h:head>
+  
+   </h:head>
     <h:body>
 
-     <ui:insert name = "header" >
-            <ui:include src = "/header.xhtml" />
+     <ui:insert name = "koka" >
+            <ui:include src = "koka.xhtml" />
          </ui:insert>
          <div class = "container">
             <h:form>
@@ -21,7 +22,7 @@
                 <h2><h:outputText value="Articles List"/></h2>
             </center>
             <h:dataTable binding="#{table}" value="#{article.articleList()}" var="a" class="table table-striped table-hover table-bordered" >
-                <h:column>
+                <h:column width= "50">
                     <f:facet name="header">ID</f:facet>
                     <h:outputText value="#{a.artikull_id}"/>
                 </h:column>
@@ -29,7 +30,7 @@
                     <f:facet name="header">Title</f:facet>
                     <h:outputText value="#{a.titulli}"/>
                 </h:column>
-                <h:column>
+                <h:column   pt:style="width:20px;text-align:center;">
                     <f:facet name="header">Abstrakti</f:facet>
                     <h:outputText value="#{a.abstrakti}"/>
                 </h:column>
@@ -39,19 +40,19 @@
                 </h:column>
      
                 <h:column> 
-                    <f:facet name="header">Actions</f:facet>
-                    <h:commandButton  value="Assign Article" class="btn btn-primary"> 
+                <f:facet name="header">Actions</f:facet>
+                    <h:commandButton  value="Assign Author" class="btn btn-primary"> 
                     </h:commandButton>
                     <h:outputText value="&#160;" />
                     <h:commandButton  value="See Article" class="btn btn-danger"> 
                     </h:commandButton>
                     <h:outputText value="&#160;" />
-                    <h:commandButton action = "#" value="Assign Shqyrtues" class="btn btn-primary"> 
+                    <h:commandButton action = "#{article.assignReviewer(a.artikull_id)}" value="Assign Reviewer" class="btn btn-primary"> 
                     </h:commandButton>
                     <h:outputText value="&#160;" />
-                	<h:commandButton action = "#" value="See Shqyrtues" class="btn btn-info"> 
+                	<h:commandButton action = "#" value="Check Reviewer" class="btn btn-info"> 
                     </h:commandButton>
-                </h:column>
+                   </h:column>
             </h:dataTable>
         </h:form>
         </div>

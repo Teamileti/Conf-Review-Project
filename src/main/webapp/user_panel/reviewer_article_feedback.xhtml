@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui = "http://java.sun.com/jsf/facelets">
+         
+          <h:head>
+            <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
+            <link href="../resources/css/footer.css" rel="stylesheet"/>
+             <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome.min-jsf.css" />
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet"></link>
+    </h:head>
+    <h:body>
+     <ui:insert name = "koka" >
+            <ui:include src = "koka.xhtml" />
+         </ui:insert>
+         <div class = "container">
+             <fieldset  title="Assign Director to Movie"> 
+        	<LEGEND><b>Reviewer Feedback on this Article</b></LEGEND>
+	              </fieldset>
+        	<div class = "row">
+        	<div class = "col" style="border: thin solid lightgrey;">
+        	<br/><br/>
+        	<h:outputLabel for="title" >Article Name:</h:outputLabel>
+			    <h:outputText id="title" style = "width: 50%;" value = "#{captured.titulli}"></h:outputText>
+		        <br/><br/>
+        	 <h:outputLabel for="abstract" >Abstract:</h:outputLabel><br/>
+			    <h:outputText id="abstract" style = "width: 75%;" value = "#{captured.abstrakti}"></h:outputText>
+		        <br/><br/>
+		        <h:outputLabel for="doc" >Read full article</h:outputLabel>
+			   <a href = "#"><h:outputText id="doc" style = "width: 75%;" value = "#{captured.doc_name}"></h:outputText></a> 
+		        <br/>
+        	</div>
+        	<div class = "col">
+        	
+            <h:form prependId="false">
+	            <p:panelGrid>
+	             <br/>
+	             
+	           
+		        <div class = "form-group">
+	           <h:outputLabel for="@next" value="Reviewers:" />
+                <h:selectOneMenu  value="#{reviewer.email}" style = "width: 75%;" class = "form-control">
+	                <f:selectItems value="#{reviewer.reviewerList()}" var="r"
+	                    itemLabel="#{r.email}" itemValue="#{r.email}" />
+	            </h:selectOneMenu>
+                <p/>
+                </div>
+                <div class = "form-group">
+		         <h:outputLabel for="@next" value="Merita Teknike:" />
+		        <h:selectOneMenu id="merita" value="#{reviewer.merita_teknike}" style = "width: 75%;" class = "form-control" styleClass="selectpicker">
+		            <f:selectItem itemLabel="Zero" itemValue="0" />
+		            <f:selectItem itemLabel="One" itemValue="1" />
+		            <f:selectItem itemLabel="Two" itemValue="2" />
+		            <f:selectItem itemLabel="Three" itemValue="3" />
+		            <f:selectItem itemLabel="Four" itemValue="4" />
+		            <f:selectItem itemLabel="Five" itemValue="5" />
+		            <f:selectItem itemLabel="Six" itemValue="6" />
+		            <f:selectItem itemLabel="Seven" itemValue="7" />
+		            <f:selectItem itemLabel="Eight" itemValue="8" />
+		            <f:selectItem itemLabel="Nine" itemValue="9" />
+		            <f:selectItem itemLabel="Ten" itemValue="10" />
+		        </h:selectOneMenu>
+		        </div>
+		        <div class = "form-group">
+		         <h:outputLabel for="@next" value="Kuptueshmeria:" />
+		        <h:selectOneMenu id="kuptueshmeria" value="#{reviewer.kuptueshmeria}"  class = "form-control" style = "width: 75%;">
+		            <f:selectItem itemLabel="Zero" itemValue="0" />
+		            <f:selectItem itemLabel="One" itemValue="1" />
+		            <f:selectItem itemLabel="Two" itemValue="2" />
+		            <f:selectItem itemLabel="Three" itemValue="3" />
+		            <f:selectItem itemLabel="Four" itemValue="4" />
+		            <f:selectItem itemLabel="Five" itemValue="5" />
+		            <f:selectItem itemLabel="Six" itemValue="6" />
+		            <f:selectItem itemLabel="Seven" itemValue="7" />
+		            <f:selectItem itemLabel="Eight" itemValue="8" />
+		            <f:selectItem itemLabel="Nine" itemValue="9" />
+		            <f:selectItem itemLabel="Ten" itemValue="10" />
+		        </h:selectOneMenu> 
+		        </div>
+		        <div class = "form-group">
+		         <h:outputLabel for="@next" value="Origjinaliteti:" />
+		        <h:selectOneMenu id="origjinaliteti" value="#{reviewer.origjinaliteti}"  class = "form-control" style = "width: 75%;">
+		            <f:selectItem itemLabel="Zero" itemValue="0" />
+		            <f:selectItem itemLabel="One" itemValue="1" />
+		            <f:selectItem itemLabel="Two" itemValue="2" />
+		            <f:selectItem itemLabel="Three" itemValue="3" />
+		            <f:selectItem itemLabel="Four" itemValue="4" />
+		            <f:selectItem itemLabel="Five" itemValue="5" />
+		            <f:selectItem itemLabel="Six" itemValue="6" />
+		            <f:selectItem itemLabel="Seven" itemValue="7" />
+		            <f:selectItem itemLabel="Eight" itemValue="8" />
+		            <f:selectItem itemLabel="Nine" itemValue="9" />
+		            <f:selectItem itemLabel="Ten" itemValue="10" />
+		        </h:selectOneMenu>
+		        </div> 
+		        <div class = "form-group">
+		         <h:outputLabel for="@next" value="Perkatesi Konference:" />
+		        <h:selectOneMenu id="perkatesia" value="#{reviewer.perkatesi_konference}" class = "form-control" style = "width: 75%;">
+		            <f:selectItem itemLabel="Zero" itemValue="0" />
+		            <f:selectItem itemLabel="One" itemValue="1" />
+		            <f:selectItem itemLabel="Two" itemValue="2" />
+		            <f:selectItem itemLabel="Three" itemValue="3" />
+		            <f:selectItem itemLabel="Four" itemValue="4" />
+		            <f:selectItem itemLabel="Five" itemValue="5" />
+		            <f:selectItem itemLabel="Six" itemValue="6" />
+		            <f:selectItem itemLabel="Seven" itemValue="7" />
+		            <f:selectItem itemLabel="Eight" itemValue="8" />
+		            <f:selectItem itemLabel="Nine" itemValue="9" />
+		            <f:selectItem itemLabel="Ten" itemValue="10" />
+		        </h:selectOneMenu>
+		        </div>
+		        <div class = "form-group">
+		          Rekomandime 
+                <br/>
+	            <h:inputTextarea  class = "form-control" style = "width: 75%;" id="rekomandime" value="#{reviewer.rekomandime}" cols="50" rows="10"/>
+		        <br/>
+		        </div>
+		        <h:outputLabel for="@next" value="Final Decision:" />
+				 <h:selectOneRadio value = "#{reviewer.statusi}"> 
+					   <f:selectItem itemValue = "Approve" itemLabel = "Approve" /> 
+					   <f:selectItem itemValue = "Dissaprove" itemLabel = "Dissaprove" />
+					    <f:ajax render="choice"/> 
+					</h:selectOneRadio> 
+					 You have 
+					      <h:outputText value="#{reviewer.Choice(reviewer.statusi)}" id="choice"/> this article for further procedures.
+					 
+				<br/><br/>
+                <h:commandButton  value="Save" action="#{reviewer.saveAssignReviewer(artikull_id)}" class = "btn btn-primary"/>
+                <br/>
+                <h:outputText value="#{reviewer.message}" /> 
+                </p:panelGrid>
+            </h:form>
+            </div>
+            </div>
+         </div>
+         
+         <div class="mt-5 pt-5 pb-5 footer">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-5 col-xs-12 about-company">
+      <h2>Contacts</h2>
+      <p class="pr-5 text-white-50">You can find more about us on different social sites such as Facebook and Linkedin. Check below links for further information.  </p>
+      <p><a href="www.facebook.com"><i class="fa fa-facebook-square mr-1"></i></a><a href="www.linkedin.com"><i class="fa fa-linkedin-square"></i></a></p>
+    </div>
+    <div class="col-lg-3 col-xs-12 links">
+      <h4 class="mt-lg-0 mt-sm-3">Links</h4>
+        <ul class="m-0 p-0">
+          <li>- <a href="#">About Us</a></li>
+          <li>- <a href="#">Career options</a></li>
+          <li>- <a href="#">Previous conferences</a></li>
+          <li>- <a href="#">Foundations and support</a></li>
+          <li>- <a href="#">Partners</a></li>
+          <li>- <a href="#">Upcoming projects</a></li>
+        </ul>
+    </div>
+    <div class="col-lg-4 col-xs-12 location">
+      <h4 class="mt-lg-0 mt-sm-4">Location</h4>
+      <p>1600 Amphitheatre Parkway in Mountain View, California, United States.</p>
+      <p class="mb-0"><i class="fa fa-phone mr-3"></i>(541) 754-3010</p>
+      <p><i class="fa fa-envelope-o mr-3"></i>info@conference-review.com</p>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col copyright">
+      <p class=""><small class="text-white-50">© 2020. All Rights Reserved.</small></p>
+    </div>
+  </div>
+</div>
+</div>
+         </h:body>
+         </html>

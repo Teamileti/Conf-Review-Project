@@ -6,6 +6,10 @@
       xmlns:ui = "http://java.sun.com/jsf/facelets">
          
           <h:head>
+          <style>
+				.columnBwithwordBreak{
+				word-wrap: break-word;
+				</style>
             <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
              <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome.min-jsf.css" />
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet"></link>
@@ -18,8 +22,9 @@
             <center>
                 <h2><h:outputText value="Articles Records"/></h2>
             </center>
-            <h:dataTable binding="#{table}" value="#{article.articleList()}" var="ar" class="table table-striped table-hover table-bordered" >
-                <h:column>
+            <div class = "container">
+            <h:dataTable binding="#{table}"  value="#{article.articleList()}" var="ar" class="table table-striped table-hover table-bordered" >
+                <h:column >
                     <f:facet name="header">ID</f:facet>
                     <h:outputText value="#{ar.artikull_id}"/>
                 </h:column>
@@ -27,10 +32,10 @@
                     <f:facet name="header">Titulli</f:facet>
                     <h:outputText value="#{ar.titulli}"/>
                 </h:column>
-                <h:column>
+                <h:column columnClasses = "columnBwithwordBreak">
                     <f:facet name="header">Abstract</f:facet>
                     <h:outputText value="#{ar.abstrakti}"/>
-                </h:column>
+               </h:column>
                 <h:column>
                     <f:facet name="header">Emri i Dokumentit</f:facet>
                     <h:outputText value="#{ar.doc_name}"/>
@@ -42,11 +47,12 @@
                 </h:column> 
                 <h:column> 
                     <f:facet name="header">Delete</f:facet>
-                    <h:commandButton onclick="if (! confirm('Really want to do that?')) return false"
+                    <h:commandButton onclick="if (! confirm('Do you want to delete this article?')) return false"
                     action = "#{article.delete(ar.artikull_id)}" value="Delete" class="btn btn-danger"> 
                     </h:commandButton>
                 </h:column>
             </h:dataTable>
+            </div>
             <center><h:commandButton action = "article_create?faces-redirect=true" value="Create New Article" class="btn btn-success"></h:commandButton> </center>
         </h:form>
         </h:body>

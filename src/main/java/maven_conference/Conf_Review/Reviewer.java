@@ -22,11 +22,12 @@ import javax.mail.internet.MimeMessage;
 public class Reviewer {
 	
 	ArrayList reviewerList, reviewerArticleList;
+	private List<Reviewer> filteredReviewerList;
 	
-	private String email, emri, mbiemri, message, tel, insitucioni, temat_interes, rekomandime; //rekomandime i perket tabeles shqyrtues-artikulli
+	private String email, emri, mbiemri, message, tel, insitucioni, temat_interes, rekomandime, statusi; //rekomandime i perket tabeles shqyrtues-artikulli
    private int merita_teknike, kuptueshmeria, origjinaliteti, perkatesi_konference;
 	
-	
+	private String ch = " Not decided for ";
 	public String getRekomandime() {
 	return rekomandime;
 }
@@ -189,8 +190,25 @@ public void setPerkatesi_konference(int perkatesi_konference) {
     }
 
     public String saveAssignReviewer(int art_id) {
-    	ReviewerDao.saveAssignReviewer(this.email, this.merita_teknike, this.kuptueshmeria, this.origjinaliteti, this.perkatesi_konference, this.rekomandime, art_id);
+    	ReviewerDao.saveAssignReviewer(this.email, this.merita_teknike, this.kuptueshmeria, this.origjinaliteti, this.perkatesi_konference, this.rekomandime, this.statusi, art_id);
     	message = "Success! New assign reviewer created!";
-    	return "article_assign_reviewer";
+    	return "reviewer_article_feedback";
     }
+
+	public String getStatusi() {
+		return statusi;
+	}
+
+	public void setStatusi(String statusi) {
+		this.statusi = statusi;
+	}
+	public String Choice(String ch) {
+		if (ch == "Dissaprove") {
+			return "Dissaproved";
+		}
+		else if (ch== "Approve") {
+			return "Approved";
+		}
+		return ch;
+	}
 }
