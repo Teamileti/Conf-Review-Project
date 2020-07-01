@@ -143,7 +143,7 @@ public void setPerkatesi_konference(int perkatesi_konference) {
 	}
 	
 	public String articles(String email) {
-		String name = ReviewerDao.reviewerName(email);
+		String emri = ReviewerDao.reviewerName(email);
 		sessionMap.put("email", email);
 		sessionMap.put("reviewer_name", emri);
 
@@ -190,8 +190,7 @@ public void setPerkatesi_konference(int perkatesi_konference) {
     }
 
     public String saveAssignReviewer(int art_id) {
-    	ReviewerDao.saveAssignReviewer(this.email, this.merita_teknike, this.kuptueshmeria, this.origjinaliteti, this.perkatesi_konference, this.rekomandime, this.statusi, art_id);
-    	message = "Success! New assign reviewer created!";
+    	message = ReviewerDao.saveAssignReviewer(this.email, this.merita_teknike, this.kuptueshmeria, this.origjinaliteti, this.perkatesi_konference, this.rekomandime, this.statusi, art_id);
     	return "reviewer_article_feedback";
     }
 

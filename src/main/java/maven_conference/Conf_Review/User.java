@@ -153,7 +153,25 @@ public class User {
     }
 
      public String login() {
-        User u = UserDAO.login(username,password);
+    	 String generatedPassword = null;
+         try {
+             MessageDigest md = MessageDigest.getInstance("MD5");
+             md.update(password.getBytes());
+             byte[] bytes = md.digest();
+             StringBuilder sb = new StringBuilder();
+             for(int i=0; i< bytes.length ;i++)
+             {
+                 sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+             }
+             generatedPassword = sb.toString();
+         } 
+         catch (NoSuchAlgorithmException e) 
+         {
+             e.printStackTrace();
+         }
+         this.password = generatedPassword;
+        
+        User u = UserDAO.login(username,generatedPassword);
         if ( u != null ) {
             Util.addToSession("username", username);
             Util.addToSession("fullname", u.getFullname());

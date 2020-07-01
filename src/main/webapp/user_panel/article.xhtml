@@ -41,10 +41,10 @@
      
                 <h:column> 
                 <f:facet name="header">Actions</f:facet>
-                    <h:commandButton  value="Assign Author" class="btn btn-primary"> 
+                    <h:commandButton  value="Author Contact" action = "#{article.assignAuthorContact(a.artikull_id)}" class="btn btn-primary"> 
                     </h:commandButton>
                     <h:outputText value="&#160;" />
-                    <h:commandButton  value="See Article" class="btn btn-danger"> 
+                    <h:commandButton  value="See Authors" action = "#{article.authors(a.artikull_id)}" class="btn btn-danger"> 
                     </h:commandButton>
                     <h:outputText value="&#160;" />
                     <h:commandButton action = "#{article.assignReviewer(a.artikull_id)}" value="Assign Reviewer" class="btn btn-primary"> 

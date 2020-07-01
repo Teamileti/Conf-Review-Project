@@ -76,21 +76,21 @@ package maven_conference.Conf_Review;
 		public String list() {
 			return "/user_panel/article?faces-redirect=true";
 		}
-		/*
+		
 		 public ArrayList articleAuthorList(int id){
 			articleAuthorList = ArticleDAO.articleAuthorList(id);
 			return articleAuthorList;
 		}
 		
-	   public String actors(int film_id) {
-			String title = MovieDAO.movieTitle(film_id);
-			sessionMap.put("film_id", film_id);
+	   public String authors(int artikull_id) {
+			String title = ArticleDAO.articleTitle(artikull_id);
+			sessionMap.put("artikull_id", artikull_id);
 			sessionMap.put("title", title);
 
-			return "/user_panel/movie_actors?faces-redirect=true";
+			return "/user_panel/author_article?faces-redirect=true";
 		}
 		
-	*/
+	/*
 		public ArrayList articleReviewerList(int id){
 			articleShqyrtuesList = ArticleDAO.articleShyrtuesitList(id);
 			return articleShqyrtuesList;
@@ -142,16 +142,15 @@ package maven_conference.Conf_Review;
 	             return "article_edit";
 	        }
 	    }
-	    /*
 	    
-	    public String assignAuthor(int artikull_id) {
+	    public String assignAuthorContact(int artikull_id) {
 			Article returned = ArticleDAO.articleData(artikull_id);
 			sessionMap.put("artikull_id", artikull_id);
 			sessionMap.put("returned", returned);
 
-			return "/user_panel/article_assign_author?faces-redirect=true";
+			return "/user_panel/author_contact?faces-redirect=true";
 	    }
-*/
+
 	    public String assignReviewer(int artikull_id) {
 			Article captured = ArticleDAO.articleData(artikull_id);
 			sessionMap.put("artikull_id", artikull_id);

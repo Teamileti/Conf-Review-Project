@@ -59,7 +59,7 @@ package maven_conference.Conf_Review;
 		            rs.next();
 		            return rs.getString("emri");
 		        } catch (Exception ex) {
-		            System.out.println("ReviewrrDAO-> reviewerName() : " + ex.getMessage());
+		            System.out.println("ReviewerDAO-> reviewerName() : " + ex.getMessage());
 		            return null;
 		        }
 		 }
@@ -139,9 +139,16 @@ package maven_conference.Conf_Review;
 	        }
 	    }
 	    
-	    public static void saveAssignReviewer(String email, int merita_teknike, int kuptueshmeria, int origjinaliteti, int perkatesi_konference, String rekomandime, String statusi, int art_id){
+	    public static String saveAssignReviewer(String email, int merita_teknike, int kuptueshmeria, int origjinaliteti, int perkatesi_konference, String rekomandime, String statusi, int art_id){
+	    	String res = " ";
 	        try{
 	        	Connection conn = Database.getConnection();
+	        	Statement st = conn.createStatement();
+	        	ResultSet rs = st.executeQuery("select count(art_id) from shqyrtues_artikulli where art_id = " +(art_id));
+	        	rs.next();
+	            int numri = rs.getInt(1);
+	            System.out.println(numri);
+	        	if (numri <= 5) {
 	            PreparedStatement stmt = conn.prepareStatement("insert into shqyrtues_artikulli(sh_email, art_id, merita_teknike, kuptueshmeria, origjinaliteti, perkatesi_konference, rekomandime, statusi) values(?,?,?,?,?,?,?,?)");
 	            stmt.setString(1, email);
 	            stmt.setInt(2, art_id);
@@ -152,11 +159,20 @@ package maven_conference.Conf_Review;
 	            stmt.setString(7, rekomandime);
 	            stmt.setString(8, statusi);
 	            int result = stmt.executeUpdate();
-	            System.out.println("Shqyrtues_Artikulli saved successfully!");
 	            conn.close();
+	           return res = "Shqyrtues_Artikulli saved successfully!";
+	          
+	        	}
+	        	else {
+					return res = "This article already has reached its' maximum number of reviewers of 5!";
+	        	}
 	        }catch(Exception e){
 	        	System.out.println("ReviewerDAO->saveAssignReviewer() : " + e.getMessage());
 	        }
+	        finally {
+	            System.out.println("The 'try catch' is finished.");
+	          }
+			return res;
 	    }
 
 	}

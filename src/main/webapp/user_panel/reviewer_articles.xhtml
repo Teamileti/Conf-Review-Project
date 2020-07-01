@@ -18,7 +18,7 @@
           <fieldset  title="Reviewer Articles List">
             <h:form>
             <center>
-                <h2><h:outputText value="Articles List - #{reviewer_name}"/></h2>
+                <h2><h:outputText value="Articles Reviewed By - #{emri}"/></h2>
             </center>
             <h:dataTable binding="#{table}" value="#{reviewer.reviewerArticleList(email)}" var="r" class="table table-striped table-hover table-bordered" >
                  <h:column>

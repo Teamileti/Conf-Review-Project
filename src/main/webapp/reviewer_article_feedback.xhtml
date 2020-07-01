@@ -15,12 +15,14 @@
             <ui:include src = "koka.xhtml" />
          </ui:insert>
          <div class = "container">
+         <h:form>
          <h:dataTable binding="#{table}" value="#{article.articleList(id)}" var = "r">
          Title: 
          <h:outputText value="#{r.titulli}"></h:outputText>
          Abstract:
          <h:outputFormat value="#{r.abstrakti}"></h:outputFormat>
          </h:dataTable>
+         </h:form>
          </div>
          </h:body>
          </html>

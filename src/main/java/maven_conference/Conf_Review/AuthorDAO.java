@@ -127,24 +127,43 @@ package maven_conference.Conf_Review;
 	            return false;
 	        }
 	    }
-	    /*
 	    
-	    public static void saveAssignActor(int aktor_id, String citimi, int film_id){
+	    
+	    public static String saveAuthorContact(int aid, String eid, String kontakt){
+	    	String res = " ";
 	        try{
+	        	
 	        	Connection conn = Database.getConnection();
-	            PreparedStatement stmt = conn.prepareStatement("insert into film_aktor(fid, aid, citimi) values(?,?,?)");
-	            stmt.setInt(1, film_id);
-	            stmt.setInt(2, aktor_id);
-	            stmt.setString(3, citimi);
+	        	Statement st = conn.createStatement();
+	        	ResultSet rs = st.executeQuery("select count(kontakt) from artikulli_autoret where aid = " +(aid));
+	        	rs.next();
+	            int numri = rs.getInt(1);
+	        	if (numri == 0) {
+	            PreparedStatement stmt = conn.prepareStatement("insert into artikulli_autoret(aid, eid, kontakt) values(?,?,?)");
+	            stmt.setInt(1, aid);
+	            stmt.setString(2, eid);
+	            stmt.setString(3, kontakt);
 	            int result = stmt.executeUpdate();
-	            System.out.println("Actor-Movie saved successfully!");
-	            conn.close();
-	        }catch(Exception e){
-	        	System.out.println("ActorDAO->saveAssignActor() : " + e.getMessage());
+	            res = "Article_Contact saved successfully!";
+	            return res;
+	        	}
+	        	
+	        	else {
+					return res = "This article already has its contact number!";
+	        	}
 	        }
+	        catch(Exception e){
+	        	System.out.println("AuthorDAO->saveAuthorContact() : " + e.getMessage());
+	        }  
+	        finally {
+	            System.out.println("The 'try catch' is finished.");
+	          }
+			return res;
 	    }
-		    
 	}
-	*/
+	        
+	  	
 
-}
+
+
+

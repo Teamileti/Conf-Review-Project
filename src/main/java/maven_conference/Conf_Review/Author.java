@@ -23,7 +23,7 @@ package maven_conference.Conf_Review;
 
 		ArrayList authorList, authorArticleList;
 		
-		private String email_id, emri, mbiemri, message; 
+		private String email_id, emri, mbiemri, message, contact; 
 		
 
 		public String getEmail_id() {
@@ -81,7 +81,7 @@ package maven_conference.Conf_Review;
 			sessionMap.put("email_id", email_id); 
 			sessionMap.put("emri", name);
 
-			return "/user_panel/author_article?faces-redirect=true";
+			return "/user_panel/article_author?faces-redirect=true";
 		}
 		
 
@@ -120,14 +120,21 @@ package maven_conference.Conf_Review;
 	             return "author_edit";
 	        }
 	    }
-	    /*
 	    
-	    public String saveAssignActor(int movie_id) {
-	    	ActorDAO.saveAssignActor(this.aktor_id, this.citimi, movie_id);
-	    	message = "Success! New assign actor created!";
-	    	return "movie_assign_actors";
+	    
+	    public String saveAuthorContact(int artikull_id) {
+	    	message = AuthorDAO.saveAuthorContact( artikull_id, this.email_id, this.contact);
+	    	//message = "Success! New contact for the article saved!";
+	    	return "article_author_contact";
 	    }
+ 
+	
 
-	}
-	*/
+		public String getContact() {
+			return contact;
+		}
+
+		public void setContact(String contact) {
+			this.contact = contact;
+		}
 }

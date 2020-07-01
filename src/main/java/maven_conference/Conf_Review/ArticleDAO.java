@@ -26,29 +26,28 @@ package maven_conference.Conf_Review;
 		            return null;
 		        }
 		    }
-		 /*
-		 public static ArrayList articleAuthorList(int artikull_id) {
+		 
+		 public static ArrayList<Author> articleAuthorList(int artikull_id) {
 			 try (Connection con = Database.getConnection()) {
-		            PreparedStatement stmt=con.prepareStatement("select * from artikulli_autoret,autoret where artikulli_autoret.eid= autoret.email_id and artikulli_autoret.aid=?");  
+		            PreparedStatement stmt=con.prepareStatement("select * from autoret, artikulli_autoret  where autoret.email_id = artikulli_autoret.eid and artikulli_autoret.aid=?");  
 		            stmt.setInt(1, artikull_id);
 		            ResultSet rs=stmt.executeQuery(); 
-		            ArrayList authors = new ArrayList();
+		            ArrayList<Author> authors = new ArrayList<Author>();
 		            while(rs.next()) {
 		                Author a = new Author();
-		                a.setAktor_id(rs.getInt("aktor_id"));
-		                a.setDatelindja(rs.getString("datelindja"));
+		                a.setEmail_id(rs.getString("email_id"));
 		                a.setEmri(rs.getString("emri"));
-		                actors.add(a);
+		                a.setMbiemri(rs.getString("mbiemri"));
+		                authors.add(a);
 		            }
-		            System.out.println("Movie Actors added to list!");
-		            return actors;
+		            System.out.println("Authors for this article added to list!");
+		            return authors;
 		        } catch (Exception ex) {
-		            System.out.println("MovieDAO-> movieActorsList() : " + ex.getMessage());
+		            System.out.println("ArticleDAO-> articleAuthorList() : " + ex.getMessage());
 		            return null;
 		        }
 		 }
-		 */
-		 /*
+		 
 		 
 		 public static String articleTitle(int artikull_id) {
 			 try (Connection con = Database.getConnection()) {
@@ -58,10 +57,10 @@ package maven_conference.Conf_Review;
 		            rs.next();
 		            return rs.getString("titulli");
 		        } catch (Exception ex) {
-		            System.out.println("ArticleDAO-> articleAuthorList() : " + ex.getMessage());
+		            System.out.println("ArticleDAO-> articleTitle() : " + ex.getMessage());
 		            return null;
 		        }
-		 } */
+		 } 
 		 
 		 public static Article articleData(int artikull_id) {
 			 Article a = new Article();

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui = "http://java.sun.com/jsf/facelets">
+         
+          <h:head>
+            <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
+            <link href="../resources/css/footer.css" rel="stylesheet"/>
+             <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome.min-jsf.css" />
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet"></link>
+    </h:head>
+    <h:body>
+     <ui:insert name = "koka" >
+            <ui:include src = "koka.xhtml" />
+         </ui:insert>
+          <div class = "container center_div" style = "width: 700px;">
+             <fieldset  title="Insert the contact for the author of this article"> 
+        	<LEGEND><b>Fill the Author contact for a particular Article</b></LEGEND>
+	              </fieldset>
+        	<div class = "row">
+        	<div class = "col" style="border: thin solid lightgrey; height: 400px;">
+        	 <h:form prependId="false">
+        	 <br/><br/>
+        	 <div class = "form-group">
+	           <h:outputLabel for="@next" value="Article" />
+                <h:outputText  value="Article name - #{returned.titulli}" style = "width: 75%;" class = "form-control">
+                </h:outputText>
+                <p/>
+                </div>
+        	 <div class = "form-group">
+	           <label  for ="authors">Author to be contacted</label>
+                <h:selectOneMenu id = "authors" value="#{author.email_id}" style = "width: 75%;" class = "form-control">
+	                <f:selectItems value="#{article.articleAuthorList(artikull_id)}" var="au"
+	                    itemLabel="#{au.email_id}" itemValue="#{au.email_id}" />
+	            </h:selectOneMenu>
+                <p/>
+                </div>
+                 <div class="form-group">
+            <label for="contact">Contact</label>
+            <h:inputText type="text" class="form-control" id="contact" value="#{author.contact}"  
+                              style = " width: 75%;"
+                              validatorMessage = "Please enter a valid phone number, starting with prefix"
+                              placeholder="Valid mobile number">
+                               <f:validateRegex  pattern="^(\+\d{1,3}[- ]?)?\d{10}$" />
+                   </h:inputText>
+                    <h:message for="contact" style = "color: red;"/>  
+                              
+          </div>
+		          <h:commandButton  value="Save" action="#{author.saveAuthorContact(artikull_id)}" class = "btn btn-primary"/>
+                <br/><br/>
+                <h:outputText value="#{author.message}" style = "color: green"/> 
+                </h:form>
+		        </div>
+		        </div>
+		        </div>
+		        </h:body>
+		        </html>
