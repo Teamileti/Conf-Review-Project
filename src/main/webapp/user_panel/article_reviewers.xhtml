@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui = "http://java.sun.com/jsf/facelets">
+         
+          <h:head>
+            <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
+            <link href="../resources/css/footer.css" rel="stylesheet"/>
+             <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome.min-jsf.css" />
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet"></link>
+    </h:head>
+    <h:body>
+     <ui:insert name = "koka" >
+            <ui:include src = "koka.xhtml" />
+         </ui:insert>
+           <fieldset  title="Article ReviewersList">
+           <div class = "container">
+            <h:form>
+            <center>
+                <h2><h:outputText value="Reviewers List - #{title}"/></h2>
+            </center>
+            <br/><br/>
+            <h:dataTable binding="#{table}" value="#{article.articleReviewerList(artikull_id)}" var="r" class="table table-striped table-hover table-bordered" >
+                <h:column>
+                    <f:facet name="header">Reviewers' Personal Data</f:facet>
+                    	<br/><br/>
+        	        <h:outputLabel for="Email" >Reviewers' email:</h:outputLabel>
+                    <h:outputText id = "email" value="#{r.email}"/>
+                    <br/>
+                    <h:outputLabel for="name" >Name:</h:outputLabel>
+                    <h:outputText id = "name" value="#{r.emri}"/>
+                    <br/>
+                    <h:outputLabel for="lastname" >Lastname:</h:outputLabel>
+                    <h:outputText id = "lastname" value="#{r.mbiemri}"/>
+                    <br/>
+                    <h:outputLabel for="tel" >Phone Number:</h:outputLabel>
+                    <h:outputText value="#{r.tel}"/>
+                    <br/>
+                    <h:outputLabel for="institution" >Institution:</h:outputLabel>
+                    <h:outputText id = "institution" value="#{r.insitucioni}"/>
+                    <br/>
+                    <h:outputLabel for="interes" >Interested In:</h:outputLabel>
+                    <h:outputText id = "interes" value="#{r.temat_interes}"/>
+                    <br/>
+                </h:column>
+                 <h:column>
+                    <f:facet name="header">Merit</f:facet>
+                    <h:outputText value="#{r.merita_teknike}"/>
+                </h:column>
+                 <h:column>
+                    <f:facet name="header">Originality</f:facet>
+                    <h:outputText value="#{r.origjinaliteti}"/>
+                </h:column>
+                 <h:column>
+                    <f:facet name="header">Clarity</f:facet>
+                    <h:outputText value="#{r.kuptueshmeria}"/>
+                </h:column>
+                 <h:column>
+                    <f:facet name="header">Relevance</f:facet>
+                    <h:outputText value="#{r.perkatesi_konference}"/>
+                </h:column>
+                 <h:column>
+                    <f:facet name="header">Recomandations</f:facet>
+                    <h:outputText value="#{r.rekomandime}"/>
+                </h:column>
+                 <h:column>
+                    <f:facet name="header">Status</f:facet>
+                    <h:outputText value="#{r.statusi}"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+        </div>
+        </fieldset>
+         </h:body>
+         </html>
+         

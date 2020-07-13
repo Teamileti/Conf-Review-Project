@@ -110,8 +110,8 @@ package maven_conference.Conf_Review;
 	    	return "author_edit";
 	    }
 	    
-	    public String editAuthor(String id) {
-	    	boolean done = AuthorDAO.editAuthor(this, id);
+	    public String editAuthor(String email_id) {
+	    	boolean done = AuthorDAO.editAuthor(this, email_id);
 	        if ( done ) {
 	        	 message = "Success! Author updated!";
 	             return "author_index";

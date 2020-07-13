@@ -10,7 +10,7 @@ package maven_conference.Conf_Review;
 		        try (Connection con = Database.getConnection()) {
 		            Statement stmt=con.createStatement();  
 		            ResultSet rs=stmt.executeQuery("select * from shqyrtuesi"); 
-		            ArrayList<Reviewer> reviewers = new ArrayList();
+		            ArrayList<Reviewer> reviewers = new ArrayList<Reviewer>();
 		            while(rs.next()) {
 		                Reviewer r = new Reviewer();
 		                r.setEmail(rs.getString("email"));
@@ -102,7 +102,7 @@ package maven_conference.Conf_Review;
 	        try{
 	        	Connection conn = Database.getConnection();
 	            Statement stmt=conn.createStatement();  
-	            ResultSet rs=stmt.executeQuery("select * from shqyrtuesi where email = "+(email));
+	            ResultSet rs=stmt.executeQuery("select * from shqyrtuesi where email = '"+ email + "';");
 	            rs.next();
 	            re = new Reviewer();
 	            re.setEmail(rs.getString("email"));
@@ -122,13 +122,13 @@ package maven_conference.Conf_Review;
 
 	    public static boolean editReviewer(Reviewer re, String email) {
 	        try (Connection con = Database.getConnection()) {
-	            PreparedStatement ps = con.prepareStatement("update shqyrtuesi set email =?, emri=?, mbiemri=?, tel =?, institucioni =?, teemat_interes =? where email =?");
+	            PreparedStatement ps = con.prepareStatement("update shqyrtuesi set email =?, emri=?, mbiemri=?, tel =?, institucioni =?, temat_interes =? where email =?");
 	            ps.setString(1, re.getEmail());
 	            ps.setString(2, re.getEmri());
 	            ps.setString(3, re.getMbiemri());
 	            ps.setString(4, re.getTel());
 	            ps.setString(5, re.getInsitucioni());
-	            ps.setString(6, re.getTemat_interes());
+	            ps.setString(6, re.getTemat_interes()); 
 	            ps.setString(7, email);
 	            System.out.println("Reviewer updated!");
 	            int count = ps.executeUpdate();
@@ -158,13 +158,13 @@ package maven_conference.Conf_Review;
 	            stmt.setInt(6,perkatesi_konference);
 	            stmt.setString(7, rekomandime);
 	            stmt.setString(8, statusi);
-	            int result = stmt.executeUpdate();
+	            //int result = stmt.executeUpdate();
 	            conn.close();
 	           return res = "Shqyrtues_Artikulli saved successfully!";
 	          
 	        	}
 	        	else {
-					return res = "This article already has reached its' maximum number of reviewers of 5!";
+					return res = "This article has already reached its' maximum number of reviewers of 5!";
 	        	}
 	        }catch(Exception e){
 	        	System.out.println("ReviewerDAO->saveAssignReviewer() : " + e.getMessage());

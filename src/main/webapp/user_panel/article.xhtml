@@ -41,16 +41,19 @@
      
                 <h:column> 
                 <f:facet name="header">Actions</f:facet>
-                    <h:commandButton  value="Author Contact" action = "#{article.assignAuthorContact(a.artikull_id)}" class="btn btn-primary"> 
+                    <h:commandButton style = "width: 120px;" value="Author Contact" action = "#{article.assignAuthorContact(a.artikull_id)}" class="btn btn-primary"> 
                     </h:commandButton>
                     <h:outputText value="&#160;" />
-                    <h:commandButton  value="See Authors" action = "#{article.authors(a.artikull_id)}" class="btn btn-danger"> 
+                    <h:commandButton style = "width: 120px;"  value="See Authors" action = "#{article.authors(a.artikull_id)}" class="btn btn-danger"> 
                     </h:commandButton>
                     <h:outputText value="&#160;" />
-                    <h:commandButton action = "#{article.assignReviewer(a.artikull_id)}" value="Assign Reviewer" class="btn btn-primary"> 
+                    <h:commandButton style = "width: 120px;" action = "#{article.assignReviewer(a.artikull_id)}" value="Assign Reviewer" class="btn btn-primary"> 
                     </h:commandButton>
                     <h:outputText value="&#160;" />
-                	<h:commandButton action = "#" value="Check Reviewer" class="btn btn-info"> 
+                	<h:commandButton style = "width: 120px;" action = "#{article.reviewers(a.artikull_id)}" value="Check Reviewer" class="btn btn-info"> 
+                    </h:commandButton>
+                    <h:outputText value="&#160;" />
+                    <h:commandButton style = "width: 120px;" action = "#{article.files(a.artikull_id)}" value="Read full article" class="btn btn-primary"> 
                     </h:commandButton>
                    </h:column>
             </h:dataTable>

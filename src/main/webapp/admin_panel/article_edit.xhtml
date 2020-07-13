@@ -12,11 +12,14 @@
       <ui:insert name = "koka" >
             <ui:include src = "koka.xhtml" />
          </ui:insert>
-                  <div class = "container" style = "margin-top: 15px; ">
-            <div class = "row align-items-start">
-        <div class = "col-5">
-        	 <h3>Edit the Information for this Article here</h3>
+               <div class = "container center_div" style = "width: 500px; margin-top: 15px; ">
+            <fieldset  title="Update article details here"> 
+        	<LEGEND><b>Edit the information for this article here</b></LEGEND>
+	              </fieldset>
+	              <div class = "row">
+        	<div class = "col" style="border: thin solid lightgrey;">
     <h:form>
+     <h:inputHidden  id="id" value="#{article.artikull_id}" />
         <div class="form-group">
             <label for="exampleInputEmail1">Title</label>
             <h:inputText type="text" class="form-control"  id="title" value="#{article.titulli}" 

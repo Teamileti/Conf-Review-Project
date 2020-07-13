@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:p="http://primefaces.org/ui">
+       <h:head>
+       <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome.min-jsf.css" />
+       <script src="https://www.google.com/recaptcha/api.js"></script>
+       </h:head>
     <h:body>
     <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <p style = "color: white; align-content: center; font-size: large; margin-left: 450px;">Conference-Review Management System</p>
+        <p style = "color: white; align-content: left; font-size: large;  font-family: Comic Sans MS; "><i class="fa fa-book" aria-hidden="true"></i>Conference-Review Management System</p>
           </nav>
         <div class = "container" style = "margin-top: 25px; margin-left:450px;">
             <div class = "row align-items-start">
@@ -25,10 +30,14 @@
           id="password" value = "#{user.password}"
            placeholder="Password" required="true"/>
         </div>
-        
-        <h:commandButton type="submit" class="btn btn-primary"  value="Login" action="#{user.login()}"/> 
-      </h:form>
-      <br></br>
+ 
+    <br />
+    <p:messages showDetail="true"/>
+    <p:captcha label="Captcha" validatorMessage = " "/>
+    <br />
+      <h:commandButton type="submit" class="btn btn-primary"  value="Login" action="#{user.login()}"/> 
+</h:form>
+<br/><br/>
       <a href = "register.xhtml">Don't have an account? Register Here</a><br></br>
         <a href = "recoverpassword.xhtml">Forgot Password? Click Here!</a><br></br>
        <h:outputText value="#{user.message}" />

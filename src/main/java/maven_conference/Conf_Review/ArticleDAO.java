@@ -61,6 +61,18 @@ package maven_conference.Conf_Review;
 		            return null;
 		        }
 		 } 
+		 public static String articleFile(int artikull_id) {
+			 try (Connection con = Database.getConnection()) {
+		            PreparedStatement stmt=con.prepareStatement("select * from artikulli where artikull_id=?");  
+		            stmt.setInt(1, artikull_id);
+		            ResultSet rs=stmt.executeQuery();
+		            rs.next();
+		            return rs.getString("doc_name");
+		        } catch (Exception ex) {
+		            System.out.println("ArticleDAO-> articleFile() : " + ex.getMessage());
+		            return null;
+		        }
+		 } 
 		 
 		 public static Article articleData(int artikull_id) {
 			 Article a = new Article();
@@ -83,7 +95,7 @@ package maven_conference.Conf_Review;
 		        }
 		 } 
 		 
-		 public static ArrayList articleShyrtuesitList(int artikull_id) {
+		 public static ArrayList<Reviewer> articleReviewerList(int artikull_id) {
 			 try (Connection con = Database.getConnection()) {
 		            PreparedStatement stmt=con.prepareStatement("select * from shqyrtues_artikulli, shqyrtuesi where shqyrtuesi.email = shqyrtues_artikulli.sh_email and shqyrtues_artikulli.art_id=?");  
 		            stmt.setInt(1, artikull_id);
@@ -97,6 +109,12 @@ package maven_conference.Conf_Review;
 		                re.setTel(rs.getString("tel"));
 		                re.setInsitucioni(rs.getString("institucioni"));
 		                re.setTemat_interes(rs.getString("temat_interes"));
+		                re.setRekomandime(rs.getString("rekomandime"));
+		                re.setStatusi(rs.getString("statusi"));
+		                re.setMerita_teknike(rs.getInt("merita_teknike"));
+		                re.setKuptueshmeria(rs.getInt("kuptueshmeria"));
+		                re.setOrigjinaliteti(rs.getInt("origjinaliteti"));
+		                re.setPerkatesi_konference(rs.getInt("perkatesi_konference"));
 		                shqyrtuesit.add(re);
 		            }
 		            System.out.println("Article Reviewers added to list!");
@@ -159,13 +177,14 @@ package maven_conference.Conf_Review;
 	        }
 	    }
 
-	    public static boolean editArticle(Article ar, int id) {
+	    public static boolean editArticle(Article ar, int artikull_id) {
 	        try (Connection con = Database.getConnection()) {
-	            PreparedStatement ps = con.prepareStatement("update artikulli set titulli=?, abstrakti=?, doc_name=? where artikull_id=?");
-	            ps.setString(1, ar.getTitulli());
-	            ps.setString(2, ar.getAbstrakti());
-	            ps.setString(3, ar.getDoc_name());
-	            ps.setInt(4, id);
+	            PreparedStatement ps = con.prepareStatement("update artikulli set artikull_id=?, titulli=?, abstrakti=?, doc_name=? where artikull_id=?");
+	            ps.setInt(1, ar.getArtikull_id());
+	            ps.setString(2, ar.getTitulli());
+	            ps.setString(3, ar.getAbstrakti());
+	            ps.setString(4, ar.getDoc_name());
+	            ps.setInt(5, artikull_id);
 	            System.out.println("Article updated!");
 	            int count = ps.executeUpdate();
 	            return count == 1;

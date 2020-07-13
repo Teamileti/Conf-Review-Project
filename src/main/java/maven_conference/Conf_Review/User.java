@@ -3,12 +3,14 @@ package maven_conference.Conf_Review;
 
 import java.awt.List;
 
+
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 import java.util.Properties;
 import javax.activation.DataHandler;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -20,6 +22,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.security.*;
+//import botdetect.web.jsf.JsfCaptcha;
 
 @ManagedBean
 @RequestScoped 
@@ -153,25 +156,11 @@ public class User {
     }
 
      public String login() {
-    	 String generatedPassword = null;
-         try {
-             MessageDigest md = MessageDigest.getInstance("MD5");
-             md.update(password.getBytes());
-             byte[] bytes = md.digest();
-             StringBuilder sb = new StringBuilder();
-             for(int i=0; i< bytes.length ;i++)
-             {
-                 sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-             }
-             generatedPassword = sb.toString();
-         } 
-         catch (NoSuchAlgorithmException e) 
-         {
-             e.printStackTrace();
-         }
-         this.password = generatedPassword;
+    	 
+    	 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Correct", "Correct");
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
         
-        User u = UserDAO.login(username,generatedPassword);
+        User u = UserDAO.login(username,password);
         if ( u != null ) {
             Util.addToSession("username", username);
             Util.addToSession("fullname", u.getFullname());
@@ -184,7 +173,7 @@ public class User {
         }
         else {
              message = "Sorry! Invalid Login!";
-             return "failure";
+             return "login";
         }
     }
 
@@ -325,8 +314,12 @@ public class User {
 	public void setFilteredUserList(ArrayList<User> filteredUserList) {
 		this.filteredUserList = filteredUserList;
 	}
-
-
+	/*
+	 public void submit() {
+	        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Correct", "Correct");
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
+	    }
+*/
     
     
 }

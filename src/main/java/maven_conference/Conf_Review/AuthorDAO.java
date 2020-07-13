@@ -67,7 +67,7 @@ package maven_conference.Conf_Review;
 	    public static void delete(String id){
 	        try{
 	        	Connection conn = Database.getConnection();  
-	            PreparedStatement stmt = conn.prepareStatement("delete from autoret where email_id = "+id);  
+	            PreparedStatement stmt = conn.prepareStatement("delete from autoret where email_id = " + (id));  
 	            stmt.executeUpdate();  
 	            System.out.println("Author deleted successfully");
 	        }catch(Exception e){
@@ -94,11 +94,11 @@ package maven_conference.Conf_Review;
 	    
 	    // Used to fetch record to update
 	    public static Author edit(String id){
-	        Author a= null;
+	         Author a;
 	        try{
 	        	Connection conn = Database.getConnection();
 	            Statement stmt=conn.createStatement();  
-	            ResultSet rs=stmt.executeQuery("select * from autoret where email_id = "+(id));
+	            ResultSet rs=stmt.executeQuery("select * from autoret where email_id = '"+ id + "';");     
 	            rs.next();
 	            a = new Author();
 	            a.setEmail_id(rs.getString("email_id"));
@@ -107,22 +107,25 @@ package maven_conference.Conf_Review;
 	            System.out.println("Author data updated!");
 	            conn.close();
 	            return a;
-	        }catch(Exception e){
+	        }
+	        catch(Exception e){
 	        	System.out.println("AuthorDAO->edit() : " + e.getMessage());
 	        	return null;
 	        }       
 	    }
 
-	    public static boolean editAuthor(Author a, String id) {
+	    public static boolean editAuthor(Author a, String email_id) {
 	        try (Connection con = Database.getConnection()) {
-	            PreparedStatement ps = con.prepareStatement("update autoret set emri=?, mbiemri =? where email_id=?");
-	            ps.setString(1, a.getEmri());
+	            PreparedStatement ps = con.prepareStatement("update autoret set email_id =?, emri=?, mbiemri =? where email_id = ?");            
+	            ps.setString(1, a.getEmail_id());
+	            ps.setString(2, a.getEmri());
 	            ps.setString(3, a.getMbiemri());
-	            ps.setString(3, id);
+	            ps.setString(4, email_id);
 	            System.out.println("Author updated!");
 	            int count = ps.executeUpdate();
 	            return count == 1;
-	        } catch (Exception ex) {
+	        }
+	        catch (Exception ex) {
 	            System.out.println("AuthorDAO->editAuthor() : " + ex.getMessage());
 	            return false;
 	        }

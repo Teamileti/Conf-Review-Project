@@ -21,7 +21,7 @@ package maven_conference.Conf_Review;
 	@ManagedBean
 	@RequestScoped 
 	public class Article {
-		ArrayList articleList, articleAuthorList, articleShqyrtuesList;
+		ArrayList articleList, articleAuthorList, articleReviewerList;
 		private String titulli, abstrakti, doc_name, message;
 		public String getMessage() {
 			return message;
@@ -90,20 +90,21 @@ package maven_conference.Conf_Review;
 			return "/user_panel/author_article?faces-redirect=true";
 		}
 		
-	/*
+	
 		public ArrayList articleReviewerList(int id){
-			articleShqyrtuesList = ArticleDAO.articleShyrtuesitList(id);
-			return articleShqyrtuesList;
+			articleReviewerList = ArticleDAO.articleReviewerList(id);
+			return articleReviewerList;
 		}
-		/*
 		
-		 public String directors(int film_id) {
-			String title = MovieDAO.movieTitle(film_id);
-			sessionMap.put("film_id", film_id);
+		
+		 public String reviewers(int artikull_id) {
+			String title = ArticleDAO.articleTitle(artikull_id);
+			sessionMap.put("artikull_id", artikull_id);
 			sessionMap.put("title", title);
 
-			return "/user_panel/movie_directors?faces-redirect=true";
+			return "/user_panel/article_reviewers?faces-redirect=true";
 		}
+		/*
 	    
 	    public String adminList() {
 	    	return "/admin_panel/movie_index?faces-redirect=true";
@@ -132,8 +133,8 @@ package maven_conference.Conf_Review;
 	    	return "article_edit";
 	    }
 	    
-	    public String editArticle(int id) {
-	    	boolean done = ArticleDAO.editArticle(this, id);
+	    public String editArticle(int artikull_id) {
+	    	boolean done = ArticleDAO.editArticle(this, artikull_id);
 	        if ( done ) {
 	        	 message = "Success! Article updated!";
 	             return "article_index";
@@ -159,6 +160,14 @@ package maven_conference.Conf_Review;
 			return "/user_panel/reviewer_article_feedback?faces-redirect=true";
 	    }
 	    
+	
+	 public String files(int artikull_id) {
+			String doc_name = ArticleDAO.articleFile(artikull_id);
+			sessionMap.put("artikull_id", artikull_id);
+			sessionMap.put("doc_name", doc_name);
+
+			return "/user_panel/files?faces-redirect=true";
+		}
 	}
 	/*
 	

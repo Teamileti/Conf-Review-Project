@@ -12,16 +12,15 @@
       <ui:insert name = "koka" >
             <ui:include src = "koka.xhtml" />
          </ui:insert>
-                  <div class = "container" style = "margin-top: 15px; ">
-            <div class = "row align-items-start">
-        <div class = "col-5">
-        	 <h3>Edit the Information for this Author here</h3>
+                 <div class = "container center_div" style = "width: 500px; margin-top: 15px; ">
+            <fieldset  title="Update author details here"> 
+        	<LEGEND><b>Edit the information for this author here</b></LEGEND>
+	              </fieldset>
+	              <div class = "row">
+        	<div class = "col" style="border: thin solid lightgrey;">
       <h:form>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Email</label>
-            <h:inputText type="email" class="form-control"  id="email" value="#{author.email_id}" 
-                              p:required="required" p:placeholder="Email" />
-          </div>
+        <br/>
+         <h:inputHidden  id="email" value="#{author.email_id}" />
             <div class="form-group">
             <label for="exampleInputEmail1">Name</label>
             <h:inputText type="email" class="form-control" id="name" value="#{author.emri}" 
@@ -35,7 +34,7 @@
                               
 		      <br></br> 
         <h:commandButton type="submit" class="btn btn-primary" value="Save" action= "#{author.editAuthor(author.email_id)}"/>
-        <br/>
+        <br/><br/>
                 <h:outputText value="#{author.message}" />
       </h:form>
                </div>
