@@ -194,39 +194,6 @@ public class User {
         return "/public/login?faces-redirect=true";
     }
    
-   /* public void recoverPassword(ActionEvent evt){
-        User  u = UserDAO.getUser(username, email);
-        if( u == null) {
-            message  = "Sorry! Could not find user with the given username or email address!";
-            return;
-        }
-        
-        // send mail with details
-        
-        String body = "Dear " + u.fullname + ",<p/>" +
-                   "Please use the following details to login.<p/>" + 
-                   "Username : " + u.username + "<br/>" +
-                   "Password : " + u.password + "<p/>" +
-                   "Team,<br/>MovieManagement.Com";
-        
-         try {
-            Properties props = System.getProperties();
-            Session session = Session.getDefaultInstance(props, null);
-            // construct the message
-            Message msg = new MimeMessage(session);
-            msg.setFrom(new InternetAddress("loren_nebiaj@yahoo.com"));
-            msg.setRecipient(Message.RecipientType.TO, new InternetAddress(u.email));
-            msg.setDataHandler(new DataHandler(new String(body), "text/html"));
-            msg.setSubject("Password Recovery");
-            // send message
-            Transport.send(msg);
-            message="A mail has been sent with your details. Please use those details to login again!";
-        } catch (Exception ex) {
-            System.out.println("Error sending mail : " + ex.getMessage());
-            message="Sorry! Could not send mail! Please try again!";
-        }      
-    }
-*/
     @Override
     public String toString() {
         return "User{" + "uname=" + username + ", password=" + password + ", fullname=" + fullname + ", email=" + email + ", mobile=" + mobile + ", message=" + message + ", newPassword=" + newPassword + '}';
@@ -314,12 +281,7 @@ public class User {
 	public void setFilteredUserList(ArrayList<User> filteredUserList) {
 		this.filteredUserList = filteredUserList;
 	}
-	/*
-	 public void submit() {
-	        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Correct", "Correct");
-	        FacesContext.getCurrentInstance().addMessage(null, msg);
-	    }
-*/
+
     
     
 }

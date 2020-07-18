@@ -4,6 +4,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://java.sun.com/jsf/passthrough" 
       xmlns:ui = "http://java.sun.com/jsf/facelets">
+      <f:view locale="#{formSettings.locale}">
 
   <h:head>
   </h:head>
@@ -14,56 +15,60 @@
             <ui:include src = "koka.xhtml" />
          </ui:insert>
          <div class="container">
-          <h1 class="jumbotron-heading"><b>CRS - Conference Review System</b></h1>
-          <p class="lead text-muted">Our unique system allows users to manage paper and abstract submissions and peer reviewing activities from one central location.
-          A paper review actually serves a remarkable number of different purposes, though it’s
-rarely mentioned.<br/> Here are some examples: <br/>
-• A review serves as a record which partially documents and justifies the committee’s decision to accept or reject the paper, and its reasons for doing do. <br/>
-• A review provides feedback to the authors on how to improve the paper or otherwise proceed with their work, regardless of whether it’s accepted or not. <br/>
-• A review communicates your thoughts about the paper to other PC members. <br/>
-There usually isn’t time to talk about all the details of a review in the PC meeting itself, and reading fellow PC members’ reviews is an important time-saving
-technique. Typically, one reviewer will be called upon to summarize the paper,
-all the paper’s reviews, and their personal opinion in the meeting, and others
-chime in with other thoughts.
+   <h:form>
+                   
+                   <div class = "row" align = "right" style = "padding-left: 1000px;">
+                   <i class="fa fa-language" aria-hidden="true"></i><p>  </p>
+         <h:selectOneRadio value="#{formSettings.language}" style = "margin-left: 10px;"
+                  onclick="submit()"
+                  immediate="true">
+  <f:selectItems value="#{formSettings.languages}"/>
+</h:selectOneRadio>
+</div>
+          <h1 class="jumbotron-heading"><b><h:outputFormat value="#{txt.Title}"></h:outputFormat></b></h1>
+          <p class="lead text-muted"><h:outputFormat value="#{txt.MainText}"></h:outputFormat><br/>
+          <h:outputFormat value="#{txt.LineOne}"></h:outputFormat><br/>
+          <h:outputFormat value="#{txt.LineTwo}"></h:outputFormat><br/>
+          <h:outputFormat value="#{txt.LineThree}"></h:outputFormat><br/>
+          <h:outputFormat value="#{txt.LineFour}"></h:outputFormat><br/>
+          <h:outputFormat value="#{txt.LineFive}"></h:outputFormat>
           </p>
-          <p>
-            <a href="#" class="btn btn-secondary my-2">How to participate</a>
-            <a href="#" class="btn btn-secondary my-2">Check Events</a>
+          <p> 
+            <a href="#" class="btn btn-secondary my-2"><h:outputFormat value="#{txt.BtnOne}"></h:outputFormat></a>
+            <a href="#" class="btn btn-secondary my-2"><h:outputFormat value="#{txt.BtnTwo}"></h:outputFormat></a>
           </p>
+          </h:form>
         </div>
          <div class = "container">
    <div class="card-group">
   <div class="card">
     <h:graphicImage class="card-img-top" value ="/resources/images/article.jpg" alt="Card image cap" style = " width: 360px; height: 250px;" />
     <div class="card-body">
-      <h5 class="card-title"><h2><b>Articles</b></h2></h5>
-      <p class="card-text">Different authors can upload their articles through this site. Later those will be reviewed by the 2 to 5 different professional reviewers, 
-      They will give their opinion through their validation on certain topics, such as the clarity, methodology, how much is it related to the topic etc. They will give 
-      points ranging from zero, the minimum, to 10, the maximum evaluation for the article. In the end, the reviewers can give their recommendations for
-      further improvement.  </p>
+      <h5 class="card-title"><h2><b><h:outputFormat value="#{txt.ArticleTitle}"></h:outputFormat></b></h2></h5>
+      <p class="card-text"><h:outputFormat value="#{txt.ArticleText}"></h:outputFormat></p>
     </div>
     <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
+      <small class="text-muted"><h:outputFormat value="#{txt.Updated}"></h:outputFormat></small>
     </div>
   </div>
   <div class="card">
     <h:graphicImage class="card-img-top" value ="/resources/images/author.jpg" alt="Card image cap" style = " width: 360px; height: 250px;" />
     <div class="card-body">
-      <h5 class="card-title"><h2><b>Authors</b></h2></h5>
-      <p class="card-text">Authors can be from various fields and specialisations. The credibility of an author is very important in determining the quality of sources you have located and are thinking of using for your research project.  There are several ways of determining if an author is credible depending on the type of source.  However, the strategies used for books, articles and websites can also be used for other types of sources.</p>
+      <h5 class="card-title"><h2><b><h:outputFormat value="#{txt.AuthorTitle}"></h:outputFormat></b></h2></h5>
+      <p class="card-text"><h:outputFormat value="#{txt.AuthorText}"></h:outputFormat></p>
     </div>
     <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
+      <small class="text-muted"><h:outputFormat value="#{txt.Updated}"></h:outputFormat></small>
     </div>
   </div>
-  <div class="card">
+ <div class="card">
     <h:graphicImage class="card-img-top" value ="/resources/images/reviewer.jpg" alt="Card image cap" style = " width: 360px; height: 250px;"/>
     <div class="card-body">
-      <h5 class="card-title"><h2><b>Reviewers</b></h2></h5>
-      <p class="card-text">A review refers to a formal evaluation of a particular work. In an article review, the individual first reads the book, understands and assesses it, then he compiles a review. In this review, the writer presents a holistic view of the book. He does not analyze each and every segment separately but presents an overall assessment. This can be either positive or negative.</p>
+      <h5 class="card-title"><h2><b><h:outputFormat value="#{txt.ReviewerTitle}"></h:outputFormat></b></h2></h5>
+      <p class="card-text"><h:outputFormat value="#{txt.ReviewerText}"></h:outputFormat></p>
     </div>
     <div class="card-footer">
-      <small class="text-muted">Last updated 3 mins ago</small>
+      <small class="text-muted"><h:outputFormat value="#{txt.Updated}"></h:outputFormat></small>
     </div>
   </div>
 </div>
@@ -71,6 +76,6 @@ chime in with other thoughts.
  <ui:insert name = "footer" >
             <ui:include src = "footer.xhtml" />
          </ui:insert>
-
       </h:body>
+      </f:view>
 </html>

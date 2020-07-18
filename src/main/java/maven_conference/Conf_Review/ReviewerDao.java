@@ -148,7 +148,7 @@ package maven_conference.Conf_Review;
 	        	rs.next();
 	            int numri = rs.getInt(1);
 	            System.out.println(numri);
-	        	if (numri <= 5) {
+	        	if (numri <= 5) { //max 5 shqyrtues per nje artikull
 	            PreparedStatement stmt = conn.prepareStatement("insert into shqyrtues_artikulli(sh_email, art_id, merita_teknike, kuptueshmeria, origjinaliteti, perkatesi_konference, rekomandime, statusi) values(?,?,?,?,?,?,?,?)");
 	            stmt.setString(1, email);
 	            stmt.setInt(2, art_id);

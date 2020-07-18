@@ -9,6 +9,8 @@
             <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
              <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome.min-jsf.css" />
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet"></link>
+             <link href="../resources/css/footer.css" rel="stylesheet"/>
+    
     </h:head>
     <h:body>
      <ui:insert name = "koka" >
@@ -54,5 +56,8 @@
         </h:form>
         </fieldset>
         </div>
+          <ui:insert name = "footer" >
+            <ui:include src = "footer.xhtml" />
+         </ui:insert>
          </h:body>
          </html>

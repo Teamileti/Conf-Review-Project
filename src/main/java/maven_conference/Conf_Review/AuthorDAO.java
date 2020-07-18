@@ -141,7 +141,7 @@ package maven_conference.Conf_Review;
 	        	ResultSet rs = st.executeQuery("select count(kontakt) from artikulli_autoret where aid = " +(aid));
 	        	rs.next();
 	            int numri = rs.getInt(1);
-	        	if (numri == 0) {
+	        	if (numri == 0) { //nqs ka tashme nje kontakt per kete artikull atehere afishi mesazhin
 	            PreparedStatement stmt = conn.prepareStatement("insert into artikulli_autoret(aid, eid, kontakt) values(?,?,?)");
 	            stmt.setInt(1, aid);
 	            stmt.setString(2, eid);
